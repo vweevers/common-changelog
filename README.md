@@ -32,8 +32,9 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
   - [3.3. Rephrase changes](#33-rephrase-changes)
   - [3.4. Merge related changes](#34-merge-related-changes)
   - [3.5. Skip no-op changes](#35-skip-no-op-changes)
-  - [3.6. Move content of prereleases](#36-move-content-of-prereleases)
-  - [3.7. Add historical notes](#37-add-historical-notes)
+  - [3.6. Separate commit message and description](#36-separate-commit-message-and-description)
+  - [3.7. Move content of prereleases](#37-move-content-of-prereleases)
+  - [3.8. Add historical notes](#38-add-historical-notes)
 - [4. Clean releases start with a clean history](#4-clean-releases-start-with-a-clean-history)
 - [5. Antipatterns](#5-antipatterns)
   - [5.1. Verbatim copying of content](#51-verbatim-copying-of-content)
@@ -336,11 +337,15 @@ Becomes:
 
 A changelog entry describes the difference between two releases. If commits between those releases negate each other (for example because one reverts the other) then leave them out of the changelog.
 
-### 3.6. Move content of prereleases
+### 3.6. Separate commit message and description
 
 \[..]
 
-### 3.7. Add historical notes
+### 3.7. Move content of prereleases
+
+\[..]
+
+### 3.8. Add historical notes
 
 \[..]
 
@@ -395,13 +400,13 @@ In [Why Use Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/
 
 Common Changelog instead focuses on making changes descriptive and explaining _why_ a change is made. This tends to be forgotten in Conventional Commits because it gives commit authors the false impression that their messages are descriptive. To be fair, that is a general communication problem that Conventional Commits doesn't aim to solve. It is however a problem that should be prioritized - over automation and over rigid structure.
 
-Common Changelog uses natural language (in the imperative mood to gain back consistency) because it fits all contexts, including explaining a change to a stakeholder in person. Writing commit messages should be done like explaining it to a human, which shifts the conversation from types of changes to ~~the _why_ of changes~~ <sup>REPHRASE</sup>.
+Common Changelog uses natural language (in the imperative mood) because it fits all contexts, including explaining changes to a stakeholder in person. Writing commit messages should be done like explaining them to humans. First and foremost to consumers, then to contributors and future selves.
 
-For comparison, let's poke some holes <sup>REPHRASE</sup> in the commit examples from [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#examples).
+Let's see how these Common Changelog principles can improve commit messages and consequently changelogs, by rewriting the commit examples from the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#examples) homepage.
 
 **Unclear breaking change**
 
-Instead of:
+This Conventional Commit does not lead with the fact that it's breaking. The description of the feature on the first line does not explain how extending works. The second line does although according to its prefix (`BREAKING CHANGE`) it's instead supposed to explain why the change is breaking.
 
 ```
 feat: allow provided config object to extend other configs
@@ -409,15 +414,13 @@ feat: allow provided config object to extend other configs
 BREAKING CHANGE: `extends` key in config file is now used for extending other config files
 ```
 
-Write:
+Instead write (for example):
 
 ```
 Breaking: support extending config files through `extends` key
 
 This config key is now reserved and no longer exposed to userland code.
 ```
-
-Note: from this commit message, the second line can be left out of a changelog as long as it references the commit (which now explains why the change is breaking). <sup>MOVE TO OWN SECTION</sup>
 
 **Breaking change hidden as a refactoring**
 
