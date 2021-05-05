@@ -160,7 +160,7 @@ Use an unnumbered list with dashes (`-`). Items of the list should be sorted: br
 
 Write a change using the [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood). It must start with a present-tense verb, for example (but not limited to) `Add`, `Refactor`, `Bump`, `Document`, `Fix`, `Deprecate`.
 
-> :bulb: It's highly recommended that git commits follow the same convention. In this workflow <sup>REPHRASE</sup>, writing a changelog is smooth sailing because there is less work to do between a generated draft and the final text. Using the imperative mood tells someone what applying a commit will do. Similarly, in a changelog it tells someone what upgrading will do. It communicates an _intent_ of change. Most importantly though, the choice of imperative mood is meant to increase consistency and avoid bike shedding.
+> :bulb: It's highly recommended that git commits follow the same convention. A changelog draft can then be generated from git history without having to rephrase commit messages. Using the imperative mood tells someone what applying a commit will do. Similarly, in a changelog it tells someone what upgrading will do. It communicates an _intent_ of change. Most importantly though, the choice of imperative mood is meant to increase consistency and avoid bike shedding.
 
 Each change must be self-describing, as if no category heading exists. Instead of:
 
