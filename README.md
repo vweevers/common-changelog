@@ -407,7 +407,29 @@ Stable release based on [3.1.0-rc.2].
 
 ### 3.8. Add historical notes
 
-\[..]
+Occasionally releases need a note to clarify status or inconsistencies that could cause confusion. For example when a release was yanked, the format of git tags changed, or when an external change negated statements made in the changelog. Such notes must be written at the bottom of a changelog entry in the following form:
+
+```
+**Historical note**
+
+<short paragraph>
+```
+
+They should not replace existing changelog content. Some examples (links omitted):
+
+```
+**Historical note**
+
+This release was not published to npm due to security issues (#123).
+```
+
+```
+**Historical note**
+
+From this release and onward, git tags are prefixed with `v`.
+```
+
+Use sparingly. If a note pertains to code (rather than releases or git objects) and has a suitable place outside of the changelog, write it there instead and follow up with a new release.
 
 ## 4. Clean releases start with a clean history
 
@@ -592,11 +614,7 @@ There is no `[YANKED]` tag (or other types of "tags" other than git tags) in Com
 
 ### 7.2. What about yanked releases?
 
-A yanked release should still have an entry in the changelog, assuming the release was public for more than a few hours. Add a historical note (yet to be described in this document) explaining the status of the release and linking to more information if available. An example (links omitted for brevity):
-
-```
-**Historical Note** This release was not published to npm due to security issues (#123).
-```
+A yanked release should still have an entry in the changelog, assuming the release was public for more than a few hours. Add a [historical note](#38-add-historical-notes) explaining the status of the release and linking to more information if available.
 
 ### 7.3. Should you ever rewrite a changelog?
 
