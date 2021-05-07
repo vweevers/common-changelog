@@ -261,7 +261,7 @@ For projects that contain _subsystems_ (git submodules or other units of code) a
 
 ### 2.5. Markdown formatting
 
-GFM <sup>ELABORATE</sup>
+Common Changelog has no opinions on Markdown formatting. The Markdown examples in this document follow the [`hallmark`](https://github.com/vweevers/hallmark) style guide.
 
 ## 3. Writing
 
