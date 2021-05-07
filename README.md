@@ -344,7 +344,7 @@ A change should be brief and to the point, no more than one line long. This make
 Long descriptions should be in commits or other references, even if the long description explains a breaking change. Given a commit like:
 
 ```
-Breaking: bump yaml-parser from 4.x to 5.x (15d5a9e)
+Breaking: bump yaml-parser from 4.x to 5.x
 
 Removes the `unsafe` option.
 ```
