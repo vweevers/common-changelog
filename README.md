@@ -388,15 +388,15 @@ For example (links omitted):
 ```md
 ## [3.1.0] - 2021-07-05
 
-Stable release based on [3.1.0.rc.2].
+Stable release based on [3.1.0-rc.2].
 
-## [3.1.0.rc.2] - 2021-07-04
+## [3.1.0-rc.2] - 2021-07-04
 
 ### Fixed
 
 - Use localized date formats on Schedule page (`a11eb73`)
 
-## [3.1.0.rc.1] - 2021-07-03
+## [3.1.0-rc.1] - 2021-07-03
 
 ### Added
 
