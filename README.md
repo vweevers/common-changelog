@@ -33,7 +33,7 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
   - [3.4. Merge related changes](#34-merge-related-changes)
   - [3.5. Skip no-op changes](#35-skip-no-op-changes)
   - [3.6. Separate commit message and description](#36-separate-commit-message-and-description)
-  - [3.7. Move content of prereleases](#37-move-content-of-prereleases)
+  - [3.7. Promoting a prerelease](#37-promoting-a-prerelease)
   - [3.8. Add historical notes](#38-add-historical-notes)
 - [4. Clean releases start with a clean history](#4-clean-releases-start-with-a-clean-history)
 - [5. Antipatterns](#5-antipatterns)
@@ -363,9 +363,47 @@ The only exception to this rule is if the commit lacks a description. Then one c
 
 Alternatively, maintain a separate upgrade guide document for semver-major releases.
 
-### 3.7. Move content of prereleases
+### 3.7. Promoting a prerelease
 
-\[..]
+For promoting a prerelease to a release, choose one of three approaches according to the type of project and the nature of the prerelease.
+
+**A. Copy content to release**
+
+A generic approach is to copy content from prereleases to the release. Follow the same practices as when creating a changelog entry from commits. Meaning to merge related changes and so forth (as described above). Write the changelog entry as if the prereleases don't exist.
+
+**B. Skip changelog entry for prerelease**
+
+A prerelease does not need a changelog entry if the prerelease is made for internal testing purposes rather than public consumption, for example to test CI/CD triggered by a git tag.
+
+**C. Refer to prerelease**
+
+After a round of prereleases that each had a changelog entry, the entry for the release could simply state `Stable release based on <prerelease version>`.
+
+This approach is suitable for private projects with a lengthier release flow where (crucially) all stakeholders are familiar with the contents of a release by the time it's deemed stable. One such flow is to perform Quality Assurance on internally distributed prereleases. By design, the stable release then doesn't contain new content to be communicated.
+
+For example (links omitted):
+
+<details><summary>Click to expand</summary>
+
+```md
+## [3.1.0] - 2021-07-05
+
+Stable release based on [3.1.0.rc.2].
+
+## [3.1.0.rc.2] - 2021-07-04
+
+### Fixed
+
+- Use localized date formats on Schedule page (`a11eb73`)
+
+## [3.1.0.rc.1] - 2021-07-03
+
+### Added
+
+- Add Schedule page listing upcoming events (`59a03a9`)
+```
+
+</details>
 
 ### 3.8. Add historical notes
 
