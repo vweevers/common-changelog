@@ -339,7 +339,29 @@ A changelog entry describes the difference between two releases. If commits betw
 
 ### 3.6. Separate commit message and description
 
-\[..]
+A change should be brief and to the point, no more than one line long. This makes a list of changes easy to scan. Consider that the reader could be presented with changelogs of multiple projects, as is common when dependency updates are batched or when a breaking change has a ripple effect on dependent projects.
+
+Long descriptions should be in commits or other references, even if the long description explains a breaking change. Given a commit like:
+
+```
+Breaking: bump yaml-parser from 4.x to 5.x (15d5a9e)
+
+Removes the `unsafe` option.
+```
+
+The change should be (links omitted for brevity):
+
+```
+- **Breaking:** bump `yaml-parser` from 4.x to 5.x (`15d5a9e`)
+```
+
+The only exception to this rule is if the commit lacks a description. Then one could write:
+
+```
+- **Breaking:** bump `yaml-parser` from 4.x to 5.x (`15d5a9e`). Removes the `unsafe` option.
+```
+
+Alternatively, maintain a separate upgrade guide document for semver-major releases.
 
 ### 3.7. Move content of prereleases
 
