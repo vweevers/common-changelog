@@ -638,4 +638,4 @@ Sure. There are always good reasons to improve a changelog and not just the last
 
 ### 6.4. Is Common Changelog a commit convention?
 
-No, if a commit convention means to encode information to be consumed by machines. The guidelines of Common Changelog can be used to write commit messages in a certain way and certainly recommends (but doesn't require) doing so. The key difference however is that Common Changelog targets human readers and avoids encoded communication. To say that `feat` is a feature and `!` denotes a breaking change for example.
+No, if a commit convention means to encode information to be consumed by machines. The guidelines of Common Changelog can be used to write commit messages in a certain way and certainly recommend (but don't require) doing so. The key difference however is that Common Changelog targets human readers and avoids encoded communication. To say that `feat` is a feature and `!` denotes a breaking change for example.
