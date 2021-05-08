@@ -439,7 +439,9 @@ Use sparingly. If a note pertains to code (rather than releases or git objects) 
 
 ### 5.1. Verbatim copying of content
 
-Using `git log` as a changelog is a bad idea: it's full of noise. This doesn't necessarily mean that the commits are bad. They serve a different purpose. Commits are meant to document a step in the evolution of source code. Similarly, on projects that only land code through Pull Requests it may be tempting to write a changelog by listing those Pull Requests as-is. Which is not too different from listing commits.
+Using `git log` as a changelog is a bad idea: it's full of noise. This doesn't necessarily mean that the commits are bad. They serve a different purpose: commits are meant to document a step in the evolution of source code.
+
+Similarly, on projects that only land code through Pull Requests it may be tempting to write a changelog by listing those Pull Requests as-is. Which is not too different from listing commits.
 
 For example (links omitted for brevity):
 
