@@ -46,6 +46,7 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
   - [7.1. How is this different from Keep a Changelog?](#71-how-is-this-different-from-keep-a-changelog)
   - [7.2. What about yanked releases?](#72-what-about-yanked-releases)
   - [7.3. Should you ever rewrite a changelog?](#73-should-you-ever-rewrite-a-changelog)
+  - [7.4. Is Common Changelog a commit convention?](#74-is-common-changelog-a-commit-convention)
 
 </details>
 
@@ -608,11 +609,29 @@ jobs:
 
 ### 7.1. How is this different from Keep a Changelog?
 
-Common Changelog does not have `Deprecated` and `Security` categories. A deprecation can be listed under `Changed`. For example: "Deprecate the security category".
+[Keep a Changelog](https://keepachangelog.com/) was one of the first complete guides for writing a changelog. It has solid principles and offers a high-level layout for a changelog. Common Changelog was born to fill in various gaps and leave less room for interpretation. Common Changelog is undoubtedly more opinionated, while equally striving for an approach that's suitable for any project.
 
-Common Changelog does not have an `Unreleased` section at the top of the changelog. Upcoming changes can be seen elsewhere. An `Unreleased` section does not speed up maintaining the changelog, in practice. If a commit or pull request makes a change, it cannot add itself to `CHANGELOG.md` <sup>CLARIFY</sup>.
+More specifically, there are some differences in the changelog format.
 
-There is no `[YANKED]` tag (or other types of "tags" other than git tags) in Common Changelog. Instead use a historical note which is a more generic (but unparsable) format suitable for other notices too.
+**Additions**
+
+Common Changelog adds [references](#242-references), [authors](#243-authors) and a way to [highlight breaking changes](#244-prefixes).
+
+**Less categories**
+
+Common Changelog does not have `Deprecated` and `Security` categories. A deprecation can be listed under the `Changed` category. For example: "Deprecate the security category".
+
+**No Unreleased section**
+
+Common Changelog does not have an `Unreleased` section at the top of the changelog, which Keep a Changelog recommends for listing unreleased changes as they land in the main branch of the project. In practice, especially with Common Changelog's addition of [references](#242-references), this is an unproductive workflow:
+
+1. Although a commit or pull request could describe itself in the `Unreleased` section, it cannot add the necessary (self) references. These can only be added after the fact.
+2. First-time contributors can't be expected to update the changelog. Maintainers would have to commit that separately, resulting in a noisy git history.
+3. Writing a changelog requires a bird's-eye view of the project, while individual changes are typically best reviewed and discussed in isolation.
+
+**No `[YANKED]` tag**
+
+Instead of a special notation for yanked releases, Common Changelog uses historical notes, as a generic (but unparsable) format that's suitable for any kind of note.
 
 ### 7.2. What about yanked releases?
 
@@ -621,3 +640,7 @@ A yanked release should still have an entry in the changelog, assuming the relea
 ### 7.3. Should you ever rewrite a changelog?
 
 Sure. There are always good reasons to improve a changelog and not just the last release. It's a historical record and a useful reference to answer questions like "When did X change?".
+
+### 7.4. Is Common Changelog a commit convention?
+
+No, if a commit convention means to encode information to be consumed by machines. The guidelines of Common Changelog can be used to write commit messages in a certain way and certainly recommends (but doesn't require) doing so. The key difference however is that Common Changelog targets human readers and avoids encoded communication. To say that `feat` is a feature and `!` denotes a breaking change for example.
