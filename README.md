@@ -35,18 +35,17 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
   - [3.6. Separate commit message and description](#36-separate-commit-message-and-description)
   - [3.7. Promoting a prerelease](#37-promoting-a-prerelease)
   - [3.8. Add historical notes](#38-add-historical-notes)
-- [4. Clean releases start with a clean history](#4-clean-releases-start-with-a-clean-history)
-- [5. Antipatterns](#5-antipatterns)
-  - [5.1. Verbatim copying of content](#51-verbatim-copying-of-content)
-  - [5.2. Conventional Commits](#52-conventional-commits)
-  - [5.3. Confusing dates](#53-confusing-dates)
-- [6. Integration](#6-integration)
-  - [6.1. GitHub Actions](#61-github-actions)
-- [7. FAQ](#7-faq)
-  - [7.1. How is this different from Keep a Changelog?](#71-how-is-this-different-from-keep-a-changelog)
-  - [7.2. What about yanked releases?](#72-what-about-yanked-releases)
-  - [7.3. Should you ever rewrite a changelog?](#73-should-you-ever-rewrite-a-changelog)
-  - [7.4. Is Common Changelog a commit convention?](#74-is-common-changelog-a-commit-convention)
+- [4. Antipatterns](#4-antipatterns)
+  - [4.1. Verbatim copying of content](#41-verbatim-copying-of-content)
+  - [4.2. Conventional Commits](#42-conventional-commits)
+  - [4.3. Confusing dates](#43-confusing-dates)
+- [5. Integration](#5-integration)
+  - [5.1. GitHub Actions](#51-github-actions)
+- [6. FAQ](#6-faq)
+  - [6.1. How is this different from Keep a Changelog?](#61-how-is-this-different-from-keep-a-changelog)
+  - [6.2. What about yanked releases?](#62-what-about-yanked-releases)
+  - [6.3. Should you ever rewrite a changelog?](#63-should-you-ever-rewrite-a-changelog)
+  - [6.4. Is Common Changelog a commit convention?](#64-is-common-changelog-a-commit-convention)
 
 </details>
 
@@ -432,13 +431,9 @@ From this release and onward, git tags are prefixed with `v`.
 
 Use sparingly. If a note pertains to code (rather than releases or git objects) and has a suitable place outside of the changelog, write it there instead and follow up with a new release.
 
-## 4. Clean releases start with a clean history
+## 4. Antipatterns
 
-\[..]
-
-## 5. Antipatterns
-
-### 5.1. Verbatim copying of content
+### 4.1. Verbatim copying of content
 
 Using `git log` as a changelog is a bad idea: it's full of noise. This doesn't necessarily mean that the commits are bad. They serve a different purpose: commits are meant to document a step in the evolution of source code.
 
@@ -473,7 +468,7 @@ Here's how one might improve it:
 
 Readers that don't use the `filter` and `membrane` options can now skip those changes, which leaves them with only one task: follow the link to `json-parser` to learn what that's about. Or maybe not even that if the above changelog was for a semver-patch release. That's when semver signaling and clean changelogs really shine.
 
-### 5.2. Conventional Commits
+### 4.2. Conventional Commits
 
 [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) adds cognitive overhead by injecting itself into the middle of a workflow. Changes do not start or end with commits.
 
@@ -574,13 +569,13 @@ Fix minor typos in code (#133)
 Reviewed-by: Z
 ```
 
-### 5.3. Confusing dates
+### 4.3. Confusing dates
 
 Regional date formats vary throughout the world. The advantage of dates formatted like `2017-07-17` is that they follow the order of largest to smallest units: year, month, and day. This format also doesn't overlap in ambiguous ways with other date formats, unlike some regional formats that switch the position of month and day numbers. These reasons, and the fact this date format is an [ISO standard](http://www.iso.org/iso/home/standards/iso8601.htm), are why it is the recommended date format for changelog entries.
 
-## 6. Integration
+## 5. Integration
 
-### 6.1. GitHub Actions
+### 5.1. GitHub Actions
 
 The following workflow is triggered by a tag and takes the changelog entry for that tag from `CHANGELOG.md` and creates a GitHub release with the same content. The [`anton-yurchenko/git-release`](https://github.com/anton-yurchenko/git-release) action that is used here also supports uploading assets to the GitHub release.
 
@@ -605,9 +600,9 @@ jobs:
           ALLOW_TAG_PREFIX: true
 ```
 
-## 7. FAQ
+## 6. FAQ
 
-### 7.1. How is this different from Keep a Changelog?
+### 6.1. How is this different from Keep a Changelog?
 
 [Keep a Changelog](https://keepachangelog.com/) was one of the first complete guides for writing a changelog. It has solid principles and offers a high-level layout for a changelog. Common Changelog was born to fill in various gaps and leave less room for interpretation. Common Changelog is undoubtedly more opinionated, while equally striving for an approach that's suitable for any project.
 
@@ -633,14 +628,14 @@ Common Changelog does not have an `Unreleased` section at the top of the changel
 
 Instead of a special notation for yanked releases, Common Changelog uses historical notes, as a generic (but unparsable) format that's suitable for any kind of note.
 
-### 7.2. What about yanked releases?
+### 6.2. What about yanked releases?
 
 A yanked release should still have an entry in the changelog, assuming the release was public for more than a few hours. Add a [historical note](#38-add-historical-notes) explaining the status of the release and linking to more information if available.
 
-### 7.3. Should you ever rewrite a changelog?
+### 6.3. Should you ever rewrite a changelog?
 
 Sure. There are always good reasons to improve a changelog and not just the last release. It's a historical record and a useful reference to answer questions like "When did X change?".
 
-### 7.4. Is Common Changelog a commit convention?
+### 6.4. Is Common Changelog a commit convention?
 
 No, if a commit convention means to encode information to be consumed by machines. The guidelines of Common Changelog can be used to write commit messages in a certain way and certainly recommends (but doesn't require) doing so. The key difference however is that Common Changelog targets human readers and avoids encoded communication. To say that `feat` is a feature and `!` denotes a breaking change for example.
