@@ -135,7 +135,7 @@ A release must have Markdown content. If the release is semver-major, it may sta
 ```
 ## [2.0.0] - 2019-08-23
 
-_**If you are upgrading:** please see [`UPGRADING.md`](UPGRADING.md)._
+_If you are upgrading: please see [`UPGRADING.md`](UPGRADING.md)._
 ```
 
 </details>
