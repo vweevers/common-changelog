@@ -43,9 +43,10 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
   - [5.1. GitHub Actions](#51-github-actions)
 - [6. FAQ](#6-faq)
   - [6.1. How is this different from Keep a Changelog?](#61-how-is-this-different-from-keep-a-changelog)
-  - [6.2. What about yanked releases?](#62-what-about-yanked-releases)
-  - [6.3. Should you ever rewrite a changelog?](#63-should-you-ever-rewrite-a-changelog)
-  - [6.4. Is Common Changelog a commit convention?](#64-is-common-changelog-a-commit-convention)
+  - [6.2. Is there a badge?](#62-is-there-a-badge)
+  - [6.3. What about yanked releases?](#63-what-about-yanked-releases)
+  - [6.4. Should you ever rewrite a changelog?](#64-should-you-ever-rewrite-a-changelog)
+  - [6.5. Is Common Changelog a commit convention?](#65-is-common-changelog-a-commit-convention)
 
 </details>
 
@@ -75,15 +76,13 @@ The consumers of software are human beings who care about what's in the software
 
 ### 2.1. File format
 
-Filename must be `CHANGELOG.md`. It must start with a first-level Markdown heading containing the word `Changelog`. To assist readers and new contributors, the purpose of the file should be stated along with standards used:
+Filename must be `CHANGELOG.md`. File content must be Markdown and start with a first-level heading:
 
 ```md
 # Changelog
-
-All notable changes will be documented in this file, adhering to [Common Changelog](https://github.com/vweevers/common-changelog).
 ```
 
-Subsequent Markdown content must be one or more releases, also referred to as changelog entries. That is unless no releases have been made yet, then there is no further content. Releases must be sorted latest-first according to [Semantic Versioning](https://semver.org/) rules. This means that the last (and hence most important) release is at the top of the changelog. There must be an entry for every new stable release.
+Subsequent Markdown content must be zero or more releases, also referred to as changelog entries. Releases must be sorted latest-first according to [Semantic Versioning](https://semver.org/) rules. This means that the last (and hence most important) release is at the top of the changelog. There must be an entry for every new stable release.
 
 ### 2.2. Release
 
@@ -128,7 +127,22 @@ Initial release.
 
 </details>
 
-A release must have Markdown content. If the release is semver-major, it may open with brief upgrade instructions (if there are too many, it's recommended to have a separate upgrade guide document). Following that, a release of any kind must list changes grouped by category.
+A release must have Markdown content. If the release is semver-major, it may start with a one-line paragraph containing a link to an upgrade guide (if any).
+
+<details>
+<summary>Example</summary>
+
+```
+## [2.0.0] - 2019-08-23
+
+_**If you are upgrading:** please see [`UPGRADING.md`](UPGRADING.md)._
+```
+
+</details>
+
+No other content is permitted on this line. A changelog is not a blog or detailed upgrade guide. Those have other goals and concerns and must be kept separate from the changelog.
+
+Following this, a release of any kind must list changes grouped by category.
 
 ### 2.3. Group of changes
 
@@ -628,14 +642,24 @@ Common Changelog does not have an `Unreleased` section at the top of the changel
 
 Instead of a special notation for yanked releases, Common Changelog uses historical notes, as a generic (but unparsable) format that's suitable for any kind of note.
 
-### 6.2. What about yanked releases?
+### 6.2. Is there a badge?
+
+Yes! To promote the use of Common Changelog, the following Markdown can be placed in the project's readme:
+
+```
+[![Common Changelog](https://img.shields.io/badge/common_changelog-informational?logo=markdown)](https://github.com/vweevers/common-changelog)
+```
+
+[![Common Changelog](https://img.shields.io/badge/common_changelog-informational?logo=markdown)](https://github.com/vweevers/common-changelog)
+
+### 6.3. What about yanked releases?
 
 A yanked release should still have an entry in the changelog, assuming the release was public for more than a few hours. Add a [historical note](#38-add-historical-notes) explaining the status of the release and linking to more information if available.
 
-### 6.3. Should you ever rewrite a changelog?
+### 6.4. Should you ever rewrite a changelog?
 
 Sure. There are always good reasons to improve a changelog and not just the last release. It's a historical record and a useful reference to answer questions like "When did X change?".
 
-### 6.4. Is Common Changelog a commit convention?
+### 6.5. Is Common Changelog a commit convention?
 
 No, if a commit convention means to encode information to be consumed by machines. The guidelines of Common Changelog can be used to write commit messages in a certain way and certainly recommend (but don't require) doing so. The key difference however is that Common Changelog targets human readers and avoids encoded communication. To say that `feat` is a feature and `!` denotes a breaking change for example.
