@@ -1,4 +1,4 @@
-# Common Changelog
+# [![logo](./logo.svg)](https://github.com/vweevers/common-changelog)
 
 **Write changelogs for humans.**
 
