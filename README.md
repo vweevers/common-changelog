@@ -19,13 +19,14 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
 - [2. Format](#2-format)
   - [2.1. File format](#21-file-format)
   - [2.2. Release](#22-release)
-  - [2.3. Group of changes](#23-group-of-changes)
-  - [2.4. List of changes](#24-list-of-changes)
-    - [2.4.1. Change](#241-change)
-    - [2.4.2. References](#242-references)
-    - [2.4.3. Authors](#243-authors)
-    - [2.4.4. Prefixes](#244-prefixes)
-  - [2.5. Markdown formatting](#25-markdown-formatting)
+  - [2.3. Notice](#23-notice)
+  - [2.4. Group of changes](#24-group-of-changes)
+  - [2.5. List of changes](#25-list-of-changes)
+    - [2.5.1. Change](#251-change)
+    - [2.5.2. References](#252-references)
+    - [2.5.3. Authors](#253-authors)
+    - [2.5.4. Prefixes](#254-prefixes)
+  - [2.6. Markdown formatting](#26-markdown-formatting)
 - [3. Writing](#3-writing)
   - [3.1. Generate a draft](#31-generate-a-draft)
   - [3.2. Remove noise](#32-remove-noise)
@@ -34,7 +35,6 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
   - [3.5. Skip no-op changes](#35-skip-no-op-changes)
   - [3.6. Separate commit message and description](#36-separate-commit-message-and-description)
   - [3.7. Promoting a prerelease](#37-promoting-a-prerelease)
-  - [3.8. Add historical notes](#38-add-historical-notes)
 - [4. Antipatterns](#4-antipatterns)
   - [4.1. Verbatim copying of content](#41-verbatim-copying-of-content)
   - [4.2. Conventional Commits](#42-conventional-commits)
@@ -127,24 +127,27 @@ Initial release.
 
 </details>
 
-A release must have Markdown content. If the release is semver-major, it may start with a one-line paragraph containing a link to an upgrade guide (if any).
+After the heading, a release must have Markdown content. This content can optionally start with a [notice](#23-notice). Following that, a release of any kind must list [changes grouped by category](#24-group-of-changes). No other content is permitted, because a changelog is not a blog or detailed upgrade guide. Those have other goals and concerns and must be kept separate from the changelog.
 
-<details>
-<summary>Example</summary>
+### 2.3. Notice
 
-```
+A release might have a separate upgrade guide or blog post that is considered essential reading. Other times a release may need to clarify its status, when it was yanked or contains zero changes.
+
+For these purposes a _notice_ must be used. This is a single-sentence paragraph with otherwise arbitrary Markdown content. Adding Markdown emphasis markers is recommended. For example (links omitted):
+
+```md
 ## [2.0.0] - 2019-08-23
 
 _If you are upgrading: please see [`UPGRADING.md`](UPGRADING.md)._
+
+### Removed
+
+- **Breaking:** remove `write()` method from public API (`01e3a64`)
 ```
 
-</details>
+Use notices wisely, as they will be the first thing a reader sees at the expense of regularly structured content. There can only be one notice per release. If a notice pertains to code (rather than a release or associated artifacts) and has a suitable place outside of the changelog, write it there instead.
 
-No other content is permitted on this line. A changelog is not a blog or detailed upgrade guide. Those have other goals and concerns and must be kept separate from the changelog.
-
-Following this, a release of any kind must list changes grouped by category.
-
-### 2.3. Group of changes
+### 2.4. Group of changes
 
 A group of changes must start with a third-level, text-only Markdown heading.
 
@@ -163,7 +166,7 @@ The word _functionality_ here can also mean documentation, supported runtime env
 
 A group must have content, that may only be a Markdown list of changes.
 
-### 2.4. List of changes
+### 2.5. List of changes
 
 Use an unnumbered list with dashes (`-`). Items of the list should be sorted: breaking changes first, then by other importance, then latest-first. The importance of a change is left to the writer's discretion.
 
@@ -171,7 +174,7 @@ Use an unnumbered list with dashes (`-`). Items of the list should be sorted: br
 - <change> (<reference>...) (<author>...)
 ```
 
-#### 2.4.1. Change
+#### 2.5.1. Change
 
 Write a change using the [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood). It must start with a present-tense verb, for example (but not limited to) `Add`, `Refactor`, `Bump`, `Document`, `Fix`, `Deprecate`.
 
@@ -197,7 +200,7 @@ Write:
 - Document the `read()` method
 ```
 
-#### 2.4.2. References
+#### 2.5.2. References
 
 A changelog is an alternative entrypoint to a codebase. It may be presented out-of-context in pull requests on third-party repositories, created by Dependabot or similar bots that read changelogs. Changes require context to understand and won't always be straightforward to describe, especially across language barriers.
 
@@ -237,7 +240,7 @@ The latter form should only be used to reference issues in external repositories
 ([JIRA-837](https://example.atlassian.net/browse/JIRA-837))
 ```
 
-#### 2.4.3. Authors
+#### 2.5.3. Authors
 
 Author names must be written after references, wrapped in parentheses and separated by commas. If the project only has one contributor, author names can be omitted. For changes authored by bots, the author listed in the changelog should be the person that merged the relevant Pull Request(s).
 
@@ -249,7 +252,7 @@ Example:
 
 There are no rules for whether to use the author's full name, username, or other. Common Changelog does recommend using the author's own preferred name, for which git is the most readily available source of truth.
 
-#### 2.4.4. Prefixes
+#### 2.5.4. Prefixes
 
 Breaking changes must be prefixed in bold with `**Breaking:** ` and should be listed before other changes (per category). For example (references omitted for brevity):
 
@@ -273,7 +276,7 @@ For projects that contain _subsystems_ (git submodules or other units of code) a
 
 > :hand: The use of subsystems should generally be avoided as it weakens semver signaling.
 
-### 2.5. Markdown formatting
+### 2.6. Markdown formatting
 
 Common Changelog has no opinions on Markdown formatting. The Markdown examples in this document follow the [`hallmark`](https://github.com/vweevers/hallmark) style guide.
 
@@ -391,7 +394,7 @@ A prerelease does not need a changelog entry if the prerelease is made for inter
 
 **C. Refer to prerelease**
 
-After a round of prereleases that each had a changelog entry, the entry for the release could simply state `Stable release based on <prerelease version>`.
+After a round of prereleases that each had a changelog entry, the entry for the release could simply state `Stable release based on <prerelease version>` (using a [notice](#23-notice)).
 
 This approach is suitable for private projects with a lengthier release flow where (crucially) all stakeholders are familiar with the contents of a release by the time it's deemed stable. One such flow is to perform Quality Assurance on internally distributed prereleases. By design, the stable release then doesn't contain new content to be communicated.
 
@@ -402,7 +405,7 @@ For example (links omitted):
 ```md
 ## [3.1.0] - 2021-07-05
 
-Stable release based on [3.1.0-rc.2].
+_Stable release based on [3.1.0-rc.2]._
 
 ## [3.1.0-rc.2] - 2021-07-04
 
@@ -418,32 +421,6 @@ Stable release based on [3.1.0-rc.2].
 ```
 
 </details>
-
-### 3.8. Add historical notes
-
-Occasionally releases need a note to clarify status or inconsistencies that could cause confusion. For example when a release was yanked, the format of git tags changed, or when an external change negated statements made in the changelog. Such notes must be written at the bottom of a changelog entry in the following form:
-
-```
-**Historical note**
-
-<short paragraph>
-```
-
-They should not replace existing changelog content. Some examples (links omitted):
-
-```
-**Historical note**
-
-This release was not published to npm due to security issues (#123).
-```
-
-```
-**Historical note**
-
-From this release and onward, git tags are prefixed with `v`.
-```
-
-Use sparingly. If a note pertains to code (rather than releases or git objects) and has a suitable place outside of the changelog, write it there instead and follow up with a new release.
 
 ## 4. Antipatterns
 
@@ -624,7 +601,7 @@ More specifically, there are some differences in the changelog format.
 
 **Additions**
 
-Common Changelog adds [references](#242-references), [authors](#243-authors) and a way to [highlight breaking changes](#244-prefixes).
+Common Changelog adds [references](#252-references), [authors](#253-authors) and a way to [highlight breaking changes](#254-prefixes).
 
 **Less categories**
 
@@ -632,7 +609,7 @@ Common Changelog does not have `Deprecated` and `Security` categories. A depreca
 
 **No Unreleased section**
 
-Common Changelog does not have an `Unreleased` section at the top of the changelog, which Keep a Changelog recommends for listing unreleased changes as they land in the main branch of the project. In practice, especially with Common Changelog's addition of [references](#242-references), this is an unproductive workflow:
+Common Changelog does not have an `Unreleased` section at the top of the changelog, which Keep a Changelog recommends for listing unreleased changes as they land in the main branch of the project. In practice, especially with Common Changelog's addition of [references](#252-references), this is an unproductive workflow:
 
 1. Although a commit or pull request could describe itself in the `Unreleased` section, it cannot add the necessary (self) references. These can only be added after the fact.
 2. First-time contributors can't be expected to update the changelog. Maintainers would have to commit that separately, resulting in a noisy git history.
@@ -640,7 +617,7 @@ Common Changelog does not have an `Unreleased` section at the top of the changel
 
 **No `[YANKED]` tag**
 
-Instead of a special notation for yanked releases, Common Changelog uses historical notes, as a generic (but unparsable) format that's suitable for any kind of note.
+Instead of a special notation for yanked releases, Common Changelog uses [notices](#23-notice) as a more generic (but unparsable) format.
 
 ### 6.2. Is there a badge?
 
@@ -654,7 +631,15 @@ Yes! To promote the use of Common Changelog, the following Markdown can be place
 
 ### 6.3. What about yanked releases?
 
-A yanked release should still have an entry in the changelog, assuming the release was public for more than a few hours. Add a [historical note](#38-add-historical-notes) explaining the status of the release and linking to more information if available.
+A yanked release should still have an entry in the changelog, assuming the release was public for more than a few hours. Add a [notice](#23-notice) explaining the status of the release and linking to more information if available. For example (links omitted):
+
+```
+## [8.5.1] - 2021-05-10
+
+_This release was not published to npm due to security issues (#123)._
+```
+
+The notice should _not_ replace other content (i.e. the list of changes).
 
 ### 6.4. Should you ever rewrite a changelog?
 
