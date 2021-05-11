@@ -42,11 +42,12 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
 - [5. Integration](#5-integration)
   - [5.1. GitHub Actions](#51-github-actions)
 - [6. FAQ](#6-faq)
-  - [6.1. How is this different from Keep a Changelog?](#61-how-is-this-different-from-keep-a-changelog)
-  - [6.2. Is there a badge?](#62-is-there-a-badge)
-  - [6.3. What about yanked releases?](#63-what-about-yanked-releases)
-  - [6.4. Should you ever rewrite a changelog?](#64-should-you-ever-rewrite-a-changelog)
-  - [6.5. Is Common Changelog a commit convention?](#65-is-common-changelog-a-commit-convention)
+  - [6.1. Why spend time on a changelog?](#61-why-spend-time-on-a-changelog)
+  - [6.2. How is this different from Keep a Changelog?](#62-how-is-this-different-from-keep-a-changelog)
+  - [6.3. Is there a badge?](#63-is-there-a-badge)
+  - [6.4. What about yanked releases?](#64-what-about-yanked-releases)
+  - [6.5. Should you ever rewrite a changelog?](#65-should-you-ever-rewrite-a-changelog)
+  - [6.6. Is Common Changelog a commit convention?](#66-is-common-changelog-a-commit-convention)
 
 </details>
 
@@ -593,7 +594,19 @@ jobs:
 
 ## 6. FAQ
 
-### 6.1. How is this different from Keep a Changelog?
+### 6.1. Why spend time on a changelog?
+
+In one word: reciprocity. Spending a modest amount of time on writing a changelog saves every reader twice as much time.
+
+On any project regardless of git practices, there will be mistakes, noise and miscommunication. That's only natural. If needed a project can move fast in git and slow down for the changelog. The release can wait 15 minutes more.
+
+In git history, a new feature may get described in more than one way because it takes time to develop a vocabulary. Maintainers will merge imperfect pull requests to stop a lenghty back-and-forth. Contributors forget that the quality of their commit messages deteriorates over time as context is lost. And so on.
+
+Writing the changelog is another feedback loop to think things through. A chance to look at the big picture: how do recent pull requests play together? Was anything missed? Does the version number accurately reflect changes? Perhaps changes are breaking in unforeseen ways. Or (rarer) the opposite of that, which could be a waste of semver-major signaling.
+
+Don't take the easy way out with full automation. This results in poor changelogs, defeating their purpose.
+
+### 6.2. How is this different from Keep a Changelog?
 
 [Keep a Changelog](https://keepachangelog.com/) was one of the first complete guides for writing a changelog. It has solid principles and offers a high-level layout for a changelog. Common Changelog was born to fill in various gaps and leave less room for interpretation. Common Changelog is undoubtedly more opinionated, while equally striving for an approach that's suitable for any project.
 
@@ -619,7 +632,7 @@ Common Changelog does not have an `Unreleased` section at the top of the changel
 
 Instead of a special notation for yanked releases, Common Changelog uses [notices](#23-notice) as a more generic (but unparsable) format.
 
-### 6.2. Is there a badge?
+### 6.3. Is there a badge?
 
 Yes! To promote the use of Common Changelog, the following Markdown can be placed in the project's readme:
 
@@ -629,7 +642,7 @@ Yes! To promote the use of Common Changelog, the following Markdown can be place
 
 [![Common Changelog](https://img.shields.io/badge/common_changelog-informational?logo=markdown)](https://github.com/vweevers/common-changelog)
 
-### 6.3. What about yanked releases?
+### 6.4. What about yanked releases?
 
 A yanked release should still have an entry in the changelog, assuming the release was public for more than a few hours. Add a [notice](#23-notice) explaining the status of the release and linking to more information if available. For example (links omitted):
 
@@ -641,10 +654,10 @@ _This release was not published to npm due to security issues (#123)._
 
 The notice should _not_ replace other content (i.e. the list of changes).
 
-### 6.4. Should you ever rewrite a changelog?
+### 6.5. Should you ever rewrite a changelog?
 
 Sure. There are always good reasons to improve a changelog and not just the last release. It's a historical record and a useful reference to answer questions like "When did X change?".
 
-### 6.5. Is Common Changelog a commit convention?
+### 6.6. Is Common Changelog a commit convention?
 
 No, if a commit convention means to encode information to be consumed by machines. The guidelines of Common Changelog can be used to write commit messages in a certain way and certainly recommend (but don't require) doing so. The key difference however is that Common Changelog targets human readers and avoids encoded communication. To say that `feat` is a feature and `!` denotes a breaking change for example.
