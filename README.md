@@ -54,7 +54,7 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
 
 ### 1.1. What is a changelog?
 
-A changelog is a file which contains a curated, chronologically ordered list of notable changes for each versioned release of a project. Its purpose is to make it easier for consumers (and to a lesser extent contributors) to see precisely what changes have been made between two releases.
+A changelog is a file that contains a curated, ordered list of notable changes for each versioned release of a project. Its purpose is to make it easier for consumers (and to a lesser extent contributors) to see precisely what changes have been made between two releases.
 
 The consumers of software are human beings who care about what's in the software. They must be able to quickly understand the impact of a release. Semantic Versioning helps as a signaling mechanism but is not enough by itself. When software changes, people want to know why and how.
 
@@ -82,7 +82,7 @@ Filename must be `CHANGELOG.md`. File content must be Markdown and start with a 
 # Changelog
 ```
 
-Subsequent Markdown content must be zero or more releases, also referred to as changelog entries. Releases must be sorted latest-first according to [Semantic Versioning](https://semver.org/) rules. This means that the last (and hence most important) release is at the top of the changelog. There must be an entry for every new stable release.
+Subsequent Markdown content must be zero or more releases, also referred to as changelog entries. Releases must be sorted latest-first according to [Semantic Versioning](https://semver.org/) rules, even if a release with a smaller version was published at a later time. This means that the semantically latest (and hence most important and frequently sought) release is at the top of the changelog. There must be an entry for every new stable release.
 
 ### 2.2. Release
 
