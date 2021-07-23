@@ -659,7 +659,7 @@ A yanked release should still have an entry in the changelog, assuming the relea
 ```
 ## [8.5.1] - 2021-05-10
 
-_This release was not published to npm due to security issues (#123)._
+_This release was never published to npm due to security issues (#123)._
 ```
 
 The notice should _not_ replace other content (i.e. the list of changes).
