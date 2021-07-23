@@ -20,7 +20,7 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
   - [2.1. File format](#21-file-format)
   - [2.2. Release](#22-release)
   - [2.3. Notice](#23-notice)
-  - [2.4. Group of changes](#24-group-of-changes)
+  - [2.4. Change group](#24-change-group)
     - [2.4.1. Change](#241-change)
     - [2.4.2. References](#242-references)
     - [2.4.3. Authors](#243-authors)
@@ -110,7 +110,7 @@ Valid:
 
 ## [1.0.0] - 2019-08-23
 
-Initial release.
+_Initial release._
 
 [1.0.1]: https://github.com/owner/name/releases/tag/v1.0.1
 [1.0.0]: https://github.com/owner/name/releases/tag/v1.0.0
@@ -122,12 +122,17 @@ Invalid:
 ## [1.0.1](https://github.com/owner/name/releases/tag/v1.0.1)
 ## [1.0.0](https://github.com/owner/name/releases/tag/v1.0.0)
 
-Initial release.
+_Initial release._
 ```
 
 </details>
 
-After the heading, a release must have Markdown content. This content can optionally start with a [notice](#23-notice). Following that, a release of any kind must list [changes grouped by category](#24-group-of-changes). No other content is permitted, because a changelog is not a blog or detailed upgrade guide. Those have other goals and concerns and must be kept separate from the changelog.
+After the heading, a release must have Markdown content that is either:
+
+1. One or more [change groups](#24-change-group);
+2. A [notice](#23-notice) followed by zero or more [change groups](#24-change-group).
+
+Change groups are only optional if a notice explains why there aren't any. No other content is permitted, because a changelog is not a blog or detailed upgrade guide. Those have other goals and concerns and must be kept separate from the changelog.
 
 ### 2.3. Notice
 
@@ -136,7 +141,7 @@ A release might have a separate upgrade guide or blog post that is considered es
 For these purposes a _notice_ must be used. This is a single-sentence paragraph with otherwise arbitrary Markdown content. Adding Markdown emphasis markers is recommended. For example (links omitted):
 
 ```md
-## [2.0.0] - 2019-08-23
+## [2.0.0] - 2020-07-23
 
 _If you are upgrading: please see [`UPGRADING.md`](UPGRADING.md)._
 
@@ -145,11 +150,19 @@ _If you are upgrading: please see [`UPGRADING.md`](UPGRADING.md)._
 - **Breaking:** remove `write()` method from public API (`01e3a64`)
 ```
 
+Notices are also useful to describe first releases (that have no changes). For example:
+
+```md
+## [1.0.0] - 2019-08-23
+
+_First release._
+```
+
 Use notices wisely, as they will be the first thing a reader sees at the expense of regularly structured content. There can only be one notice per release. If a notice pertains to code (rather than a release or associated artifacts) and has a suitable place outside of the changelog, write it there instead.
 
-### 2.4. Group of changes
+### 2.4. Change group
 
-A group of changes must start with a third-level, text-only Markdown heading.
+A change group must start with a third-level, text-only Markdown heading containing a category:
 
 ```
 ### <category>
