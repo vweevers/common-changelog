@@ -21,12 +21,11 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
   - [2.2. Release](#22-release)
   - [2.3. Notice](#23-notice)
   - [2.4. Group of changes](#24-group-of-changes)
-  - [2.5. List of changes](#25-list-of-changes)
-    - [2.5.1. Change](#251-change)
-    - [2.5.2. References](#252-references)
-    - [2.5.3. Authors](#253-authors)
-    - [2.5.4. Prefixes](#254-prefixes)
-  - [2.6. Markdown formatting](#26-markdown-formatting)
+    - [2.4.1. Change](#241-change)
+    - [2.4.2. References](#242-references)
+    - [2.4.3. Authors](#243-authors)
+    - [2.4.4. Prefixes](#244-prefixes)
+  - [2.5. Markdown formatting](#25-markdown-formatting)
 - [3. Writing](#3-writing)
   - [3.1. Generate a draft](#31-generate-a-draft)
   - [3.2. Remove noise](#32-remove-noise)
@@ -165,17 +164,15 @@ The category must be one of (in order):
 
 The word _functionality_ here can also mean documentation, supported runtime environments and so forth. The categories exist to easily recognize the impact of changes and to allow skimming a changelog. Changes that are listed under `Removed` will typically be breaking, while anything under `Added` is potentially interesting to the reader but carries no risk when upgrading.
 
-A group must have content, that may only be a Markdown list of changes.
-
-### 2.5. List of changes
-
-Use an unnumbered list with dashes (`-`). Items of the list should be sorted: breaking changes first, then by other importance, then latest-first. The importance of a change is left to the writer's discretion.
+The heading must be followed by (and only by) an unnumbered Markdown list. Each item in the list should be a single line that must start with a [change](#241-change), followed by one or more [references](#242-references) and then zero or more [authors](#243-authors). For example, if Alice and Henry fixed a bug together (links omitted for brevity):
 
 ```
-- <change> (<reference>...) (<author>...)
+- Prevent buffer overflow (#28) (Alice, Henry)
 ```
 
-#### 2.5.1. Change
+The list should be sorted: breaking changes first, then by other importance, then latest-first. The importance of a change is left to the writer's discretion.
+
+#### 2.4.1. Change
 
 Write a change using the [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood). It must start with a present-tense verb, for example (but not limited to) `Add`, `Refactor`, `Bump`, `Document`, `Fix`, `Deprecate`.
 
@@ -201,7 +198,7 @@ Write:
 - Document the `read()` method
 ```
 
-#### 2.5.2. References
+#### 2.4.2. References
 
 A changelog is an alternative entrypoint to a codebase. It may be presented out-of-context in pull requests on third-party repositories, created by Dependabot or similar bots that read changelogs. Changes require context to understand and won't always be straightforward to describe, especially across language barriers.
 
@@ -241,7 +238,7 @@ The latter form should only be used to reference issues in external repositories
 ([JIRA-837](https://example.atlassian.net/browse/JIRA-837))
 ```
 
-#### 2.5.3. Authors
+#### 2.4.3. Authors
 
 Author names must be written after references, wrapped in parentheses and separated by commas. If the project only has one contributor, author names can be omitted. For changes authored by bots, the author listed in the changelog should be the person that merged the relevant Pull Request(s).
 
@@ -253,7 +250,7 @@ Example:
 
 There are no rules for whether to use the author's full name, username, or other. Common Changelog does recommend using the author's own preferred name, for which git is the most readily available source of truth.
 
-#### 2.5.4. Prefixes
+#### 2.4.4. Prefixes
 
 Breaking changes must be prefixed in bold with `**Breaking:** ` and should be listed before other changes (per category). For example (references omitted for brevity):
 
@@ -277,7 +274,7 @@ For projects that contain _subsystems_ (git submodules or other units of code) a
 
 > :hand: The use of subsystems should generally be avoided as it weakens semver signaling.
 
-### 2.6. Markdown formatting
+### 2.5. Markdown formatting
 
 Common Changelog has no opinions on Markdown formatting. The Markdown examples in this document follow the [`hallmark`](https://github.com/vweevers/hallmark) style guide.
 
@@ -614,7 +611,7 @@ More specifically, there are some differences in the changelog format.
 
 **Additions**
 
-Common Changelog adds [references](#252-references), [authors](#253-authors) and a way to [highlight breaking changes](#254-prefixes).
+Common Changelog adds [references](#242-references), [authors](#243-authors) and a way to [highlight breaking changes](#244-prefixes).
 
 **Less categories**
 
@@ -622,7 +619,7 @@ Common Changelog does not have `Deprecated` and `Security` categories. A depreca
 
 **No Unreleased section**
 
-Common Changelog does not have an `Unreleased` section at the top of the changelog, which Keep a Changelog recommends for listing unreleased changes as they land in the main branch of the project. In practice, especially with Common Changelog's addition of [references](#252-references), this is an unproductive workflow:
+Common Changelog does not have an `Unreleased` section at the top of the changelog, which Keep a Changelog recommends for listing unreleased changes as they land in the main branch of the project. In practice, especially with Common Changelog's addition of [references](#242-references), this is an unproductive workflow:
 
 1. Although a commit or pull request could describe itself in the `Unreleased` section, it cannot add the necessary (self) references. These can only be added after the fact.
 2. First-time contributors can't be expected to update the changelog. Maintainers would have to commit that separately, resulting in a noisy git history.
