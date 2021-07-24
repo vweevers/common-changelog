@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Common Changelog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <h1 id=""><a aria-hidden="true" tabindex="-1" href="#"><img src="./link.svg" class="icon icon-link" aria-hidden></a><a href="./"><img src="./logo.svg" alt="logo"></a></h1>
+    <p><strong>Write changelogs for humans.</strong></p>
+    <p>Common Changelog is a style guide for changelogs, adapted from and a stricter subset of <a href="https://keepachangelog.com/">Keep a Changelog</a>. It embraces the guiding principle of <a href="https://keepachangelog.com/">Keep a Changelog</a> that changelogs must be written by humans and for humans, while recognizing that a clean changelog starts with a clean git history. Let them strenghten each other.</p>
+    <p>
+      <a href="https://github.com/vweevers/common-changelog"><img src="https://img.shields.io/badge/status-draft-orange" alt="draft"></a>
+      <a href="./"><img src="./badge.svg" alt="Common Changelog"></a>
+      <a href="https://github.com/vweevers/common-changelog/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-informational" alt="License"></a>
+    </p>
+    <p><span role="img" aria-label="rocket">🚀</span> <em>Too long didn't read? Here's an <a href="https://github.com/Level/level/blob/master/CHANGELOG.md">example</a>.</em></p>
+    <h2 id="table-of-contents"><a aria-hidden="true" tabindex="-1" href="#table-of-contents"><img src="./link.svg" class="icon icon-link" aria-hidden></a>Table of Contents</h2>
+    <ul>
+      <li><a href="#1-introduction">1. Introduction</a>
+        <ul>
+          <li><a href="#11-what-is-a-changelog">1.1. What is a changelog?</a></li>
+          <li><a href="#12-guiding-principles">1.2. Guiding principles</a></li>
+          <li><a href="#13-prerequisites">1.3. Prerequisites</a></li>
+        </ul>
+      </li>
+      <li><a href="#2-format">2. Format</a>
+        <ul>
+          <li><a href="#21-file-format">2.1. File format</a></li>
+          <li><a href="#22-release">2.2. Release</a></li>
+          <li><a href="#23-notice">2.3. Notice</a></li>
+          <li><a href="#24-change-group">2.4. Change group</a>
+            <ul>
+              <li><a href="#241-change">2.4.1. Change</a></li>
+              <li><a href="#242-references">2.4.2. References</a></li>
+              <li><a href="#243-authors">2.4.3. Authors</a></li>
+              <li><a href="#244-prefixes">2.4.4. Prefixes</a></li>
+            </ul>
+          </li>
+          <li><a href="#25-markdown-formatting">2.5. Markdown formatting</a></li>
+        </ul>
+      </li>
+      <li><a href="#3-writing">3. Writing</a>
+        <ul>
+          <li><a href="#31-generate-a-draft">3.1. Generate a draft</a></li>
+          <li><a href="#32-remove-noise">3.2. Remove noise</a></li>
+          <li><a href="#33-rephrase-changes">3.3. Rephrase changes</a></li>
+          <li><a href="#34-merge-related-changes">3.4. Merge related changes</a></li>
+          <li><a href="#35-skip-no-op-changes">3.5. Skip no-op changes</a></li>
+          <li><a href="#36-separate-commit-message-and-description">3.6. Separate commit message and description</a></li>
+          <li><a href="#37-promoting-a-prerelease">3.7. Promoting a prerelease</a></li>
+        </ul>
+      </li>
+      <li><a href="#4-antipatterns">4. Antipatterns</a>
+        <ul>
+          <li><a href="#41-verbatim-copying-of-content">4.1. Verbatim copying of content</a></li>
+          <li><a href="#42-conventional-commits">4.2. Conventional Commits</a></li>
+          <li><a href="#43-confusing-dates">4.3. Confusing dates</a></li>
+        </ul>
+      </li>
+      <li><a href="#5-integration">5. Integration</a>
+        <ul>
+          <li><a href="#51-github-actions">5.1. GitHub Actions</a></li>
+        </ul>
+      </li>
+      <li><a href="#6-faq">6. FAQ</a>
+        <ul>
+          <li><a href="#61-why-spend-time-on-a-changelog">6.1. Why spend time on a changelog?</a></li>
+          <li><a href="#62-how-is-this-different-from-keep-a-changelog">6.2. How is this different from Keep a Changelog?</a></li>
+          <li><a href="#63-is-there-a-badge">6.3. Is there a badge?</a></li>
+          <li><a href="#64-what-about-yanked-releases">6.4. What about yanked releases?</a></li>
+          <li><a href="#65-should-you-ever-rewrite-a-changelog">6.5. Should you ever rewrite a changelog?</a></li>
+          <li><a href="#66-is-common-changelog-a-commit-convention">6.6. Is Common Changelog a commit convention?</a></li>
+        </ul>
+      </li>
+      <li><a href="#7-license">7. License</a></li>
+    </ul>
+    <h2 id="1-introduction"><a aria-hidden="true" tabindex="-1" href="#1-introduction"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">1. </span>Introduction</h2>
+    <h3 id="11-what-is-a-changelog"><a aria-hidden="true" tabindex="-1" href="#11-what-is-a-changelog"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">1.1. </span>What is a changelog?</h3>
+    <p>A changelog is a file that contains a curated, ordered list of notable changes for each versioned release of a project. Its purpose is to make it easier for consumers (and to a lesser extent contributors) to see precisely what changes have been made between two releases.</p>
+    <p>The consumers of software are human beings who care about what's in the software. They must be able to quickly understand the impact of a release. Semantic Versioning helps as a signaling mechanism but is not enough by itself. When software changes, people want to know why and how.</p>
+    <h3 id="12-guiding-principles"><a aria-hidden="true" tabindex="-1" href="#12-guiding-principles"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">1.2. </span>Guiding principles</h3>
+    <ul>
+      <li>Changelogs are for humans.</li>
+      <li>Communicate the impact of changes.</li>
+      <li>Sort content by importance.</li>
+      <li>Skip content that isn't.</li>
+      <li>Link each change to further information.</li>
+    </ul>
+    <h3 id="13-prerequisites"><a aria-hidden="true" tabindex="-1" href="#13-prerequisites"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">1.3. </span>Prerequisites</h3>
+    <ul>
+      <li>Project is under version control (this document assumes git).</li>
+      <li>Each released version has a corresponding git tag.</li>
+      <li>Project adheres to <a href="https://semver.org/">Semantic Versioning</a>.</li>
+    </ul>
+    <h2 id="2-format"><a aria-hidden="true" tabindex="-1" href="#2-format"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2. </span>Format</h2>
+    <h3 id="21-file-format"><a aria-hidden="true" tabindex="-1" href="#21-file-format"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.1. </span>File format</h3>
+    <p>Filename must be <code>CHANGELOG.md</code>. File content must be Markdown and start with a first-level heading:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE"># Changelog</span>
+</code></pre>
+    <p>Subsequent Markdown content must be zero or more releases, also referred to as changelog entries. Releases must be sorted latest-first according to <a href="https://semver.org/">Semantic Versioning</a> rules, even if a release with a smaller version was published at a later time. This means that the semantically latest (and hence most important and frequently sought) release is at the top of the changelog. There must be an entry for every new stable release.</p>
+    <h3 id="22-release"><a aria-hidden="true" tabindex="-1" href="#22-release"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.2. </span>Release</h3>
+    <p>A release must start with second-level Markdown heading, containing a semver-valid version (without "v" prefix) and a date in the form of <code>YYYY-MM-DD</code> (<a href="http://www.iso.org/iso/home/standards/iso8601.htm">ISO 8601</a>).</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## &#x3C;version> - &#x3C;date></span>
+</code></pre>
+    <p>The version should match a git tag (with optional "v" prefix) unless it's a new version, of which the changelog entry should be committed before creating a git tag.</p>
+    <p>The version should link to further information. Use Markdown link references to keep the unrendered Markdown form of the changelog readable. If the project is hosted on GitHub, link the version to a <a href="https://help.github.com/articles/creating-releases/">GitHub release</a> that should contain the same content as the changelog entry, alongside useful GitHub features like assets and the compare view.</p>
+    <details>
+      <summary>Example</summary>
+      <p>Valid:</p>
+      <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">1.0.1</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE"> - 2019-08-24</span>
+
+<span style="color: #BF9EEE">### Fixed</span>
+
+<span style="color: #F6F6F4">- Prevent segmentation fault upon </span><span style="color: #62E884">`close()`</span>
+
+<span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">1.0.0</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE"> - 2019-08-23</span>
+
+<span style="color: #E7EE98">_Initial release._</span>
+
+<span style="color: #F6F6F4">[</span><span style="color: #BF9EEE">1.0.1</span><span style="color: #F6F6F4">]</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #97E1F1">https://github.com/owner/name/releases/tag/v1.0.1</span>
+<span style="color: #F6F6F4">[</span><span style="color: #BF9EEE">1.0.0</span><span style="color: #F6F6F4">]</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #97E1F1">https://github.com/owner/name/releases/tag/v1.0.0</span>
+</code></pre>
+      <p>Invalid:</p>
+      <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">1.0.1</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE">(</span><span style="color: #97E1F1">https://github.com/owner/name/releases/tag/v1.0.1</span><span style="color: #BF9EEE">)</span>
+<span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">1.0.0</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE">(</span><span style="color: #97E1F1">https://github.com/owner/name/releases/tag/v1.0.0</span><span style="color: #BF9EEE">)</span>
+
+<span style="color: #E7EE98">_Initial release._</span>
+</code></pre>
+    </details>
+    <p>After the heading, a release must have Markdown content that is either:</p>
+    <ol>
+      <li>One or more <a href="#24-change-group">change groups</a>;</li>
+      <li>A <a href="#23-notice">notice</a> followed by zero or more <a href="#24-change-group">change groups</a>.</li>
+    </ol>
+    <p>Change groups are only optional if a notice explains why there aren't any. No other content is permitted, because a changelog is not a blog or detailed upgrade guide. Those have other goals and concerns and must be kept separate from the changelog.</p>
+    <h3 id="23-notice"><a aria-hidden="true" tabindex="-1" href="#23-notice"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.3. </span>Notice</h3>
+    <p>A release might have a separate upgrade guide or blog post that is considered essential reading. Other times a release may need to clarify its status, when it was yanked or contains zero changes.</p>
+    <p>For these purposes a <em>notice</em> must be used. This is a single-sentence paragraph with otherwise arbitrary Markdown content. Adding Markdown emphasis markers is recommended. For example (links omitted):</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">2.0.0</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE"> - 2020-07-23</span>
+
+<span style="color: #E7EE98">_If you are upgrading: please see </span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">`UPGRADING.md`</span><span style="color: #F6F6F4">]</span><span style="color: #E7EE98">(</span><span style="color: #97E1F1">UPGRADING.md</span><span style="color: #E7EE98">)._</span>
+
+<span style="color: #BF9EEE">### Removed</span>
+
+<span style="color: #F6F6F4">- </span><span style="color: #FFB86C">**Breaking:**</span><span style="color: #F6F6F4"> remove </span><span style="color: #62E884">`write()`</span><span style="color: #F6F6F4"> method from public API (</span><span style="color: #62E884">`01e3a64`</span><span style="color: #F6F6F4">)</span>
+</code></pre>
+    <p>Notices are also useful to describe first releases (that have no changes). For example:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">1.0.0</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE"> - 2019-08-23</span>
+
+<span style="color: #E7EE98">_First release._</span>
+</code></pre>
+    <p>Use notices wisely, as they will be the first thing a reader sees at the expense of regularly structured content. There can only be one notice per release. If a notice pertains to code (rather than a release or associated artifacts) and has a suitable place outside of the changelog, write it there instead.</p>
+    <h3 id="24-change-group"><a aria-hidden="true" tabindex="-1" href="#24-change-group"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.4. </span>Change group</h3>
+    <p>A change group must start with a third-level, text-only Markdown heading containing a category:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">### &#x3C;category></span>
+</code></pre>
+    <p>The category must be one of (in order):</p>
+    <ul>
+      <li><code>Changed</code> for changes in existing functionality</li>
+      <li><code>Added</code> for new functionality</li>
+      <li><code>Removed</code> for removed functionality</li>
+      <li><code>Fixed</code> for bug fixes.</li>
+    </ul>
+    <p>The word <em>functionality</em> here can also mean documentation, supported runtime environments and so forth. The categories exist to easily recognize the impact of changes and to allow skimming a changelog. Changes that are listed under <code>Removed</code> will typically be breaking, while anything under <code>Added</code> is potentially interesting to the reader but carries no risk when upgrading.</p>
+    <p>The heading must be followed by (and only by) an unnumbered Markdown list. Each item in the list should be a single line that must start with a <a href="#241-change">change</a>, followed by one or more <a href="#242-references">references</a> and then zero or more <a href="#243-authors">authors</a>. For example, if Alice and Henry fixed a bug together (links omitted for brevity):</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">- Prevent buffer overflow (#28) (Alice, Henry)
+</code></pre>
+    <p>The list should be sorted: breaking changes first, then by other importance, then latest-first. The importance of a change is left to the writer's discretion.</p>
+    <h4 id="241-change"><a aria-hidden="true" tabindex="-1" href="#241-change"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.4.1. </span>Change</h4>
+    <p>Write a change using the <a href="https://en.wikipedia.org/wiki/Imperative_mood">imperative mood</a>. It must start with a present-tense verb, for example (but not limited to) <code>Add</code>, <code>Refactor</code>, <code>Bump</code>, <code>Document</code>, <code>Fix</code>, <code>Deprecate</code>.</p>
+    <blockquote>
+      <p><span role="img" aria-label="light bulb">💡</span> It's highly recommended that git commits follow the same convention. A changelog draft can then be generated from git history without having to rephrase commit messages. Using the imperative mood tells someone what applying a commit will do. Similarly, in a changelog it tells someone what upgrading will do. It communicates an <em>intent</em> of change. Most importantly though, the choice of imperative mood is meant to increase consistency and avoid bike shedding.</p>
+    </blockquote>
+    <p>Each change must be self-describing, as if no category heading exists. Instead of:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">### Added</span>
+
+<span style="color: #F6F6F4">- Support of CentOS</span>
+<span style="color: #F6F6F4">- </span><span style="color: #62E884">`write()`</span><span style="color: #F6F6F4"> method</span>
+<span style="color: #F6F6F4">- Documentation for the </span><span style="color: #62E884">`read()`</span><span style="color: #F6F6F4"> method</span>
+</code></pre>
+    <p>Write:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">### Added</span>
+
+<span style="color: #F6F6F4">- Support CentOS</span>
+<span style="color: #F6F6F4">- Add </span><span style="color: #62E884">`write()`</span><span style="color: #F6F6F4"> method</span>
+<span style="color: #F6F6F4">- Document the </span><span style="color: #62E884">`read()`</span><span style="color: #F6F6F4"> method</span>
+</code></pre>
+    <h4 id="242-references"><a aria-hidden="true" tabindex="-1" href="#242-references"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.4.2. </span>References</h4>
+    <p>A changelog is an alternative entrypoint to a codebase. It may be presented out-of-context in pull requests on third-party repositories, created by Dependabot or similar bots that read changelogs. Changes require context to understand and won't always be straightforward to describe, especially across language barriers.</p>
+    <p>For these reasons, changes must reference relevant commits, and should reference tickets or pull requests when available. Example:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Fix infinite loop (</span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">#194</span><span style="color: #F6F6F4">]</span><span style="color: #F6F6F4">(</span><span style="color: #97E1F1">https://github.com/owner/name/issues/194</span><span style="color: #F6F6F4">))</span>
+</code></pre>
+    <p>References must be written after (and on the same line as) a change, so that content on that line is sorted by importance from left to right. References must be wrapped in parentheses. References of the same type may be separated by commas and only then wrapped in parentheses: <code>(#1, #2)</code> rather than <code>(#1) (#2)</code>. Each reference must be a Markdown link.</p>
+    <p>When there are more than two available references, only include the best starting point for people that wish to learn more. For example, if a change happened in a pull request that closed a ticket, prefer to reference the pull request and not the ticket.</p>
+    <p>References can be written in one of the following forms.</p>
+    <p><strong>Commits</strong></p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">(</span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">`53bd922`</span><span style="color: #F6F6F4">]</span><span style="color: #F6F6F4">(</span><span style="color: #97E1F1">https://github.com/owner/name/commit/53bd922</span><span style="color: #F6F6F4">))</span>
+<span style="color: #F6F6F4">(</span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">`owner/name@53bd922`</span><span style="color: #F6F6F4">]</span><span style="color: #F6F6F4">(</span><span style="color: #97E1F1">https://github.com/owner/name/commit/53bd922</span><span style="color: #F6F6F4">))</span>
+</code></pre>
+    <p>The latter form should only be used for git submodules. If subsystem prefixes are used (see below) then the former short form is sufficient.</p>
+    <p><strong>Pull Requests or issues</strong></p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">(</span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">#194</span><span style="color: #F6F6F4">]</span><span style="color: #F6F6F4">(</span><span style="color: #97E1F1">https://github.com/owner/name/issues/194</span><span style="color: #F6F6F4">))</span>
+<span style="color: #F6F6F4">(</span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">owner/name#194</span><span style="color: #F6F6F4">]</span><span style="color: #F6F6F4">(</span><span style="color: #97E1F1">https://github.com/owner/name/issues/194</span><span style="color: #F6F6F4">))</span>
+</code></pre>
+    <p>The latter form should only be used to reference issues in external repositories. This can be useful for cross-repository efforts where a single issue is used to track progress or to explain a common change in detail.</p>
+    <p><strong>External tickets</strong></p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">(</span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">JIRA-837</span><span style="color: #F6F6F4">]</span><span style="color: #F6F6F4">(</span><span style="color: #97E1F1">https://example.atlassian.net/browse/JIRA-837</span><span style="color: #F6F6F4">))</span>
+</code></pre>
+    <h4 id="243-authors"><a aria-hidden="true" tabindex="-1" href="#243-authors"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.4.3. </span>Authors</h4>
+    <p>Author names must be written after references, wrapped in parentheses and separated by commas. If the project only has one contributor, author names can be omitted. For changes authored by bots, the author listed in the changelog should be the person that merged the relevant Pull Request(s).</p>
+    <p>Example:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Fix infinite loop (</span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">#194</span><span style="color: #F6F6F4">]</span><span style="color: #F6F6F4">(</span><span style="color: #97E1F1">https://github.com/owner/name/issues/194</span><span style="color: #F6F6F4">)) (Alice Meerkat)</span>
+</code></pre>
+    <p>There are no rules for whether to use the author's full name, username, or other. Common Changelog does recommend using the author's own preferred name, for which git is the most readily available source of truth.</p>
+    <h4 id="244-prefixes"><a aria-hidden="true" tabindex="-1" href="#244-prefixes"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.4.4. </span>Prefixes</h4>
+    <p>Breaking changes must be prefixed in bold with <code>**Breaking:** </code>and should be listed before other changes (per category). For example (references omitted for brevity):</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">### Changed</span>
+
+<span style="color: #F6F6F4">- </span><span style="color: #FFB86C">**Breaking:**</span><span style="color: #F6F6F4"> emit </span><span style="color: #62E884">`close`</span><span style="color: #F6F6F4"> event after </span><span style="color: #62E884">`end`</span>
+<span style="color: #F6F6F4">- Refactor </span><span style="color: #62E884">`sort()`</span><span style="color: #F6F6F4"> internals to improve performance</span>
+
+<span style="color: #BF9EEE">### Removed</span>
+
+<span style="color: #F6F6F4">- </span><span style="color: #FFB86C">**Breaking:**</span><span style="color: #F6F6F4"> drop support of Node.js 8</span>
+</code></pre>
+    <p>For projects that contain <em>subsystems</em> (git submodules or other units of code) a change may be prefixed in bold with the name of that subsystem. It then also helps to sort changes by subsystem. A breaking change in a subsystem should be prefixed like so: <code>**&#x3C;subsystem> (breaking):** </code>. For example:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- </span><span style="color: #FFB86C">**Installer (breaking):**</span><span style="color: #F6F6F4"> enable silent mode by default</span>
+<span style="color: #F6F6F4">- </span><span style="color: #FFB86C">**UI**</span><span style="color: #F6F6F4">: tune button colors for accessibility</span>
+</code></pre>
+    <blockquote>
+      <p><span role="img" aria-label="raised hand">✋</span> The use of subsystems should generally be avoided as it weakens semver signaling.</p>
+    </blockquote>
+    <h3 id="25-markdown-formatting"><a aria-hidden="true" tabindex="-1" href="#25-markdown-formatting"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.5. </span>Markdown formatting</h3>
+    <p>Common Changelog has no opinions on Markdown formatting. The Markdown examples in this document follow the <a href="https://github.com/vweevers/hallmark"><code>hallmark</code></a> style guide.</p>
+    <h2 id="3-writing"><a aria-hidden="true" tabindex="-1" href="#3-writing"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">3. </span>Writing</h2>
+    <h3 id="31-generate-a-draft"><a aria-hidden="true" tabindex="-1" href="#31-generate-a-draft"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">3.1. </span>Generate a draft</h3>
+    <blockquote>
+      <p><span role="img" aria-label="construction">🚧</span> I personally use <a href="https://github.com/vweevers/hallmark"><code>hallmark bump</code></a> to generate the initial content of a new changelog entry. However, it has not yet been adapted to follow Common Changelog, contains out-of-scope features, and has quirks when merge commits are used. That said, I do consider it an essential tool in my workflow and have every intention to bring it up to speed (or possibly fork it to handle changelogs separately).</p>
+    </blockquote>
+    <h3 id="32-remove-noise"><a aria-hidden="true" tabindex="-1" href="#32-remove-noise"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">3.2. </span>Remove noise</h3>
+    <p>Exclude maintenance changes that are not interesting to consumers of the project (in its distributed form). To name a few:</p>
+    <ul>
+      <li>Dotfile changes (<code>.gitignore</code>, <code>.github</code>, <code>.gitlab</code> and so forth)</li>
+      <li>Changes to development-only dependencies</li>
+      <li>Minor code style changes</li>
+      <li>Formatting changes in documentation.</li>
+    </ul>
+    <p>However, changes such as the following must <em>not</em> be excluded:</p>
+    <ul>
+      <li>Refactorings, which may have unintentional side effects. Let the community review them.</li>
+      <li>Changes to supported runtime environments (which may be reflected only in dotfiles)</li>
+      <li>Code style changes that use new language features</li>
+      <li>New documentation (if a feature was previously undocumented).</li>
+    </ul>
+    <h3 id="33-rephrase-changes"><a aria-hidden="true" tabindex="-1" href="#33-rephrase-changes"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">3.3. </span>Rephrase changes</h3>
+    <p>In a project with multiple contributors, people will use different words to say the same thing. Consider rephrasing changes in order to consistently communicate types of changes to the outside world. In addition, add details where missing or strip details when irrelevant. For example in:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Upgrade json-parser from 2.2.0 to 3.0.1</span>
+<span style="color: #F6F6F4">- Bump </span><span style="color: #62E884">`xml-parser`</span>
+</code></pre>
+    <p>The first change is too specific (because the dependency is not pinned to that exact version, let's say) while the second change is not specific enough. Instead write:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Bump </span><span style="color: #62E884">`json-parser`</span><span style="color: #F6F6F4"> from 2.x to 3.x</span>
+<span style="color: #F6F6F4">- Bump </span><span style="color: #62E884">`xml-parser`</span><span style="color: #F6F6F4"> from 6.x to 8.x</span>
+</code></pre>
+    <p>Don't stray too far from the original commit messages though, because then fellow contributors will not recognize their changes in the changelog. Instead, make an effort on future changes to align terminology between contributors.</p>
+    <h3 id="34-merge-related-changes"><a aria-hidden="true" tabindex="-1" href="#34-merge-related-changes"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">3.4. </span>Merge related changes</h3>
+    <p>If a change happened over multiple commits, consider listing them as one. Here are some examples (with pseudo references for brevity).</p>
+    <p><strong>Bumping the same dependency twice</strong></p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Bump </span><span style="color: #62E884">`standard`</span><span style="color: #F6F6F4"> from 15.x to 16.x (b)</span>
+<span style="color: #F6F6F4">- Bump </span><span style="color: #62E884">`standard`</span><span style="color: #F6F6F4"> from 14.x to 15.x (a)</span>
+</code></pre>
+    <p>Becomes:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Bump </span><span style="color: #62E884">`standard`</span><span style="color: #F6F6F4"> from 14.x to 16.x (a, b)</span>
+</code></pre>
+    <p><strong>Fixups</strong></p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Fix code style of new filter (b)</span>
+<span style="color: #F6F6F4">- Support filtering entries by name (a)</span>
+</code></pre>
+    <p>Becomes:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Support filtering entries by name (a, b)</span>
+</code></pre>
+    <h3 id="35-skip-no-op-changes"><a aria-hidden="true" tabindex="-1" href="#35-skip-no-op-changes"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">3.5. </span>Skip no-op changes</h3>
+    <p>A changelog entry describes the difference between two releases. If commits between those releases negate each other (for example because one reverts the other) then leave them out of the changelog.</p>
+    <h3 id="36-separate-commit-message-and-description"><a aria-hidden="true" tabindex="-1" href="#36-separate-commit-message-and-description"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">3.6. </span>Separate commit message and description</h3>
+    <p>A change should be brief and to the point, no more than one line long. This makes a list of changes easy to scan. Consider that the reader could be presented with changelogs of multiple projects, as is common when dependency updates are batched or when a breaking change has a ripple effect on dependent projects.</p>
+    <p>Long descriptions should be in commits or other references, even if the long description explains a breaking change. Given a commit like:</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">Breaking: bump yaml-parser from 4.x to 5.x
+
+Removes the `unsafe` option.
+</code></pre>
+    <p>The change should be (links omitted for brevity):</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- </span><span style="color: #FFB86C">**Breaking:**</span><span style="color: #F6F6F4"> bump </span><span style="color: #62E884">`yaml-parser`</span><span style="color: #F6F6F4"> from 4.x to 5.x (</span><span style="color: #62E884">`15d5a9e`</span><span style="color: #F6F6F4">)</span>
+</code></pre>
+    <p>The only exception to this rule is if the commit lacks a description. Then one could write:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- </span><span style="color: #FFB86C">**Breaking:**</span><span style="color: #F6F6F4"> bump </span><span style="color: #62E884">`yaml-parser`</span><span style="color: #F6F6F4"> from 4.x to 5.x (</span><span style="color: #62E884">`15d5a9e`</span><span style="color: #F6F6F4">). Removes the </span><span style="color: #62E884">`unsafe`</span><span style="color: #F6F6F4"> option.</span>
+</code></pre>
+    <p>Alternatively, maintain a separate upgrade guide document for semver-major releases.</p>
+    <h3 id="37-promoting-a-prerelease"><a aria-hidden="true" tabindex="-1" href="#37-promoting-a-prerelease"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">3.7. </span>Promoting a prerelease</h3>
+    <p>For promoting a prerelease to a release, choose one of three approaches according to the type of project and the nature of the prerelease.</p>
+    <p><strong>A. Copy content to release</strong></p>
+    <p>A generic approach is to copy content from prereleases to the release. Follow the same practices as when creating a changelog entry from commits. Meaning to merge related changes and so forth (as described above). Write the changelog entry as if the prereleases don't exist.</p>
+    <p><strong>B. Skip changelog entry for prerelease</strong></p>
+    <p>A prerelease does not need a changelog entry if the prerelease is made for internal testing purposes rather than public consumption, for example to test CI/CD triggered by a git tag.</p>
+    <p><strong>C. Refer to prerelease</strong></p>
+    <p>After a round of prereleases that each had a changelog entry, the entry for the release could simply state <code>Stable release based on &#x3C;prerelease version></code> (using a <a href="#23-notice">notice</a>).</p>
+    <p>This approach is suitable for private projects with a lengthier release flow where (crucially) all stakeholders are familiar with the contents of a release by the time it's deemed stable. One such flow is to perform Quality Assurance on internally distributed prereleases. By design, the stable release then doesn't contain new content to be communicated.</p>
+    <p>For example (links omitted):</p>
+    <details>
+      <summary>Click to expand</summary>
+      <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">3.1.0</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE"> - 2021-07-05</span>
+
+<span style="color: #E7EE98">_Stable release based on </span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">3.1.0-rc.2</span><span style="color: #F6F6F4">]</span><span style="color: #E7EE98">._</span>
+
+<span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">3.1.0-rc.2</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE"> - 2021-07-04</span>
+
+<span style="color: #BF9EEE">### Fixed</span>
+
+<span style="color: #F6F6F4">- Use localized date formats on Schedule page (</span><span style="color: #62E884">`a11eb73`</span><span style="color: #F6F6F4">)</span>
+
+<span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">3.1.0-rc.1</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE"> - 2021-07-03</span>
+
+<span style="color: #BF9EEE">### Added</span>
+
+<span style="color: #F6F6F4">- Add Schedule page listing upcoming events (</span><span style="color: #62E884">`59a03a9`</span><span style="color: #F6F6F4">)</span>
+</code></pre>
+    </details>
+    <h2 id="4-antipatterns"><a aria-hidden="true" tabindex="-1" href="#4-antipatterns"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">4. </span>Antipatterns</h2>
+    <h3 id="41-verbatim-copying-of-content"><a aria-hidden="true" tabindex="-1" href="#41-verbatim-copying-of-content"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">4.1. </span>Verbatim copying of content</h3>
+    <p>Using <code>git log</code> as a changelog is a bad idea: it's full of noise. This doesn't necessarily mean that the commits are bad. They serve a different purpose: commits are meant to document a step in the evolution of source code.</p>
+    <p>Similarly, on projects that only land code through Pull Requests it may be tempting to write a changelog by listing those Pull Requests as-is. Which is not too different from listing commits.</p>
+    <p>For example (links omitted for brevity):</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- json-parser 8.0.2 is fixed (#295)</span>
+<span style="color: #F6F6F4">- doc: fix dead link to xml-entities (#296)</span>
+<span style="color: #F6F6F4">- Bump actions/checkout from v2.3.3 to v2.3.4 (#293)</span>
+<span style="color: #F6F6F4">- docs: fix entryWritten example (#294)</span>
+<span style="color: #F6F6F4">- Update test framework (#288)</span>
+<span style="color: #F6F6F4">- docs: use brackets for hyphenated fields (#291)</span>
+<span style="color: #F6F6F4">- fix: membrane options - misleading error message (#292)</span>
+</code></pre>
+    <p>There are several problems here, stemming from verbatim copying of content that was only meaningful to contributors to begin with. The <code>json-parser</code> change doesn't explain or reference what was fixed. There are insignificant documentation tweaks and maintenance changes that don't affect the distributed software. This changelog is difficult to read both in detail and high level. Having no changelog would even be better because to understand these changes one has to visit each of the commits. Did the changelog reduce or increase reading time?</p>
+    <p>Here's how one might improve it:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">### Changed</span>
+
+<span style="color: #F6F6F4">- Unpin </span><span style="color: #62E884">`json-parser`</span><span style="color: #F6F6F4"> having fixed alice/json-parser#38 (#295)</span>
+
+<span style="color: #BF9EEE">### Fixed</span>
+
+<span style="color: #F6F6F4">- Clarify that hyphenated fields in </span><span style="color: #62E884">`filter`</span><span style="color: #F6F6F4"> option must use brackets (#291)</span>
+<span style="color: #F6F6F4">- Use more specific errors for invalid </span><span style="color: #62E884">`membrane`</span><span style="color: #F6F6F4"> options (#292)</span>
+</code></pre>
+    <p>Readers that don't use the <code>filter</code> and <code>membrane</code> options can now skip those changes, which leaves them with only one task: follow the link to <code>json-parser</code> to learn what that's about. Or maybe not even that if the above changelog was for a semver-patch release. That's when semver signaling and clean changelogs really shine.</p>
+    <h3 id="42-conventional-commits"><a aria-hidden="true" tabindex="-1" href="#42-conventional-commits"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">4.2. </span>Conventional Commits</h3>
+    <p><a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> adds cognitive overhead by injecting itself into the middle of a workflow. Changes do not start or end with commits.</p>
+    <p>For generating changelogs, Conventional Commits does help to initially categorize changes, but the use of Conventional Commits also means that commit messages must be converted to a more readable form. Using that form in the first place will align content across the board. Starting with stories and epics, then tickets, then commits, then pull requests, then changelogs. Ultimately this means less cognitive overhead, making room for everybody to understand and recognize each change presented in multiple contexts. This is the "end-to-end" approach of Common Changelog.</p>
+    <p>In <a href="https://www.conventionalcommits.org/en/v1.0.0/#why-use-conventional-commits">Why Use Conventional Commits</a> it's stated to be good for:</p>
+    <blockquote>
+      <p>Communicating the nature of changes to teammates, the public, and other stakeholders.</p>
+    </blockquote>
+    <p>Common Changelog instead focuses on making changes descriptive and explaining <em>why</em> a change is made. This tends to be forgotten in Conventional Commits because it gives commit authors the false impression that their messages are descriptive. To be fair, that is a general communication problem that Conventional Commits doesn't aim to solve. It is however a problem that should be prioritized - over automation and over rigid structure.</p>
+    <p>Common Changelog uses natural language (in the imperative mood) because it fits all contexts, including explaining changes to a stakeholder in person. Writing commit messages should be done like explaining them to humans. First and foremost to consumers, then to contributors and future selves.</p>
+    <p>Let's see how these Common Changelog principles can improve commit messages and consequently changelogs, by rewriting the commit examples from the <a href="https://www.conventionalcommits.org/en/v1.0.0/#examples">Conventional Commits</a> homepage.</p>
+    <p><strong>Unclear breaking change</strong></p>
+    <p>This Conventional Commit does not lead with the fact that it's breaking. The description of the feature on the first line does not explain how extending works. The second line does although according to its prefix (<code>BREAKING CHANGE</code>) it's instead supposed to explain why the change is breaking.</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">feat: allow provided config object to extend other configs
+
+BREAKING CHANGE: `extends` key in config file is now used for extending other config files
+</code></pre>
+    <p>Instead write (for example):</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">Breaking: support extending config files through `extends` key
+
+This config key is now reserved and no longer exposed to userland code.
+</code></pre>
+    <p><strong>Breaking change hidden as a refactoring</strong></p>
+    <p>Instead of:</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">refactor!: drop support for Node 6
+
+BREAKING CHANGE: refactor to use JavaScript features not available in Node 6.
+</code></pre>
+    <p>Write:</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">Breaking: refactor using new JavaScript features
+
+Drops support of Node 6.
+</code></pre>
+    <p><strong>Documentation tweak in unknown file</strong></p>
+    <p>Instead of:</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">docs: correct spelling of CHANGELOG
+</code></pre>
+    <p>Write (for example):</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">Fix spelling of CHANGELOG in README
+</code></pre>
+    <p><strong>Redundant type and scope information</strong></p>
+    <p>Instead of:</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">feat(lang): add polish language
+</code></pre>
+    <p>Write:</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">Add polish translation
+</code></pre>
+    <p><strong>Unnecessarily long description</strong></p>
+    <p>Instead of:</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">fix: correct minor typos in code
+
+see the issue for details on typos fixed.
+
+Reviewed-by: Z
+Refs #133
+</code></pre>
+    <p>Write:</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">Fix minor typos in code (#133)
+
+Reviewed-by: Z
+</code></pre>
+    <h3 id="43-confusing-dates"><a aria-hidden="true" tabindex="-1" href="#43-confusing-dates"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">4.3. </span>Confusing dates</h3>
+    <p>Regional date formats vary throughout the world. The advantage of dates formatted like <code>2017-07-17</code> is that they follow the order of largest to smallest units: year, month, and day. This format also doesn't overlap in ambiguous ways with other date formats, unlike some regional formats that switch the position of month and day numbers. These reasons, and the fact this date format is an <a href="http://www.iso.org/iso/home/standards/iso8601.htm">ISO standard</a>, are why it is the recommended date format for changelog entries.</p>
+    <h2 id="5-integration"><a aria-hidden="true" tabindex="-1" href="#5-integration"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">5. </span>Integration</h2>
+    <h3 id="51-github-actions"><a aria-hidden="true" tabindex="-1" href="#51-github-actions"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">5.1. </span>GitHub Actions</h3>
+    <p>The following workflow is triggered by a tag and takes the changelog entry for that tag from <code>CHANGELOG.md</code> and creates a GitHub release with the same content. The <a href="https://github.com/anton-yurchenko/git-release"><code>anton-yurchenko/git-release</code></a> action that is used here also supports uploading assets to the GitHub release.</p>
+    <pre style="background: #282A36"><code class="language-yaml"><span style="color: #97E1F1">name</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #E7EE98">Release</span>
+<span style="color: #BF9EEE">on</span><span style="color: #F286C4">:</span>
+<span style="color: #F6F6F4">  </span><span style="color: #97E1F1">push</span><span style="color: #F286C4">:</span>
+<span style="color: #F6F6F4">    </span><span style="color: #97E1F1">tags</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> [</span><span style="color: #DEE492">'</span><span style="color: #E7EE98">*</span><span style="color: #DEE492">'</span><span style="color: #F6F6F4">]</span>
+<span style="color: #97E1F1">permissions</span><span style="color: #F286C4">:</span>
+<span style="color: #F6F6F4">  </span><span style="color: #97E1F1">contents</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #E7EE98">write</span>
+<span style="color: #97E1F1">jobs</span><span style="color: #F286C4">:</span>
+<span style="color: #F6F6F4">  </span><span style="color: #97E1F1">release</span><span style="color: #F286C4">:</span>
+<span style="color: #F6F6F4">    </span><span style="color: #97E1F1">name</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #E7EE98">Release</span>
+<span style="color: #F6F6F4">    </span><span style="color: #97E1F1">runs-on</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #E7EE98">ubuntu-latest</span>
+<span style="color: #F6F6F4">    </span><span style="color: #97E1F1">steps</span><span style="color: #F286C4">:</span>
+<span style="color: #F6F6F4">      </span><span style="color: #F286C4">-</span><span style="color: #F6F6F4"> </span><span style="color: #97E1F1">name</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #E7EE98">Checkout</span>
+<span style="color: #F6F6F4">        </span><span style="color: #97E1F1">uses</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #E7EE98">actions/checkout@v2</span>
+<span style="color: #F6F6F4">      </span><span style="color: #F286C4">-</span><span style="color: #F6F6F4"> </span><span style="color: #97E1F1">name</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #E7EE98">Create GitHub release</span>
+<span style="color: #F6F6F4">        </span><span style="color: #97E1F1">uses</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #E7EE98">docker://antonyurchenko/git-release:latest</span>
+<span style="color: #F6F6F4">        </span><span style="color: #97E1F1">env</span><span style="color: #F286C4">:</span>
+<span style="color: #F6F6F4">          </span><span style="color: #97E1F1">GITHUB_TOKEN</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #E7EE98">${{ secrets.GITHUB_TOKEN }}</span>
+</code></pre>
+    <h2 id="6-faq"><a aria-hidden="true" tabindex="-1" href="#6-faq"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">6. </span>FAQ</h2>
+    <h3 id="61-why-spend-time-on-a-changelog"><a aria-hidden="true" tabindex="-1" href="#61-why-spend-time-on-a-changelog"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">6.1. </span>Why spend time on a changelog?</h3>
+    <p>In one word: reciprocity. Spending a modest amount of time on writing a changelog saves every reader twice as much time.</p>
+    <p>On any project regardless of git practices, there will be mistakes, noise and miscommunication. That's only natural. If needed a project can move fast in git and slow down for the changelog. The release can wait 15 minutes more.</p>
+    <p>In git history, a new feature may get described in more than one way because it takes time to develop a vocabulary. Maintainers will merge imperfect pull requests to stop a lenghty back-and-forth. Contributors forget that the quality of their commit messages deteriorates over time as context is lost. And so on.</p>
+    <p>Writing the changelog is another feedback loop to think things through. A chance to look at the big picture: how do recent pull requests play together? Was anything missed? Does the version number accurately reflect changes? Perhaps changes are breaking in unforeseen ways. Or (rarer) the opposite of that, which could be a waste of semver-major signaling.</p>
+    <p>Don't take the easy way out with full automation. This results in poor changelogs, defeating their purpose.</p>
+    <h3 id="62-how-is-this-different-from-keep-a-changelog"><a aria-hidden="true" tabindex="-1" href="#62-how-is-this-different-from-keep-a-changelog"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">6.2. </span>How is this different from Keep a Changelog?</h3>
+    <p><a href="https://keepachangelog.com/">Keep a Changelog</a> was one of the first complete guides for writing a changelog. It has solid principles and offers a high-level layout for a changelog. Common Changelog was born to fill in various gaps and leave less room for interpretation. Common Changelog is undoubtedly more opinionated, while equally striving for an approach that's suitable for any project.</p>
+    <p>More specifically, there are some differences in the changelog format.</p>
+    <p><strong>Additions</strong></p>
+    <p>Common Changelog adds <a href="#242-references">references</a>, <a href="#243-authors">authors</a> and a way to <a href="#244-prefixes">highlight breaking changes</a>.</p>
+    <p><strong>Less categories</strong></p>
+    <p>Common Changelog does not have <code>Deprecated</code> and <code>Security</code> categories. A deprecation can be listed under the <code>Changed</code> category. For example: "Deprecate the security category".</p>
+    <p><strong>No Unreleased section</strong></p>
+    <p>Common Changelog does not have an <code>Unreleased</code> section at the top of the changelog, which Keep a Changelog recommends for listing unreleased changes as they land in the main branch of the project. In practice, especially with Common Changelog's addition of <a href="#242-references">references</a>, this is an unproductive workflow:</p>
+    <ol>
+      <li>Although a commit or pull request could describe itself in the <code>Unreleased</code> section, it cannot add the necessary (self) references. These can only be added after the fact.</li>
+      <li>First-time contributors can't be expected to update the changelog. Maintainers would have to commit that separately, resulting in a noisy git history.</li>
+      <li>Writing a changelog requires a bird's-eye view of the project, while individual changes are typically best reviewed and discussed in isolation.</li>
+    </ol>
+    <p><strong>No <code>[YANKED]</code> tag</strong></p>
+    <p>Instead of a special notation for yanked releases, Common Changelog uses <a href="#23-notice">notices</a> as a more generic (but unparsable) format.</p>
+    <h3 id="63-is-there-a-badge"><a aria-hidden="true" tabindex="-1" href="#63-is-there-a-badge"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">6.3. </span>Is there a badge?</h3>
+    <p>Yes! To promote the use of Common Changelog, the following Markdown can be placed in the project's readme:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">[</span><span style="color: #F286C4">![Common Changelog](https://common-changelog.org/badge.svg)</span><span style="color: #F6F6F4">]</span><span style="color: #F6F6F4">(</span><span style="color: #97E1F1">https://common-changelog.org</span><span style="color: #F6F6F4">)</span>
+</code></pre>
+    <p><a href="./"><img src="./badge.svg" alt="Common Changelog"></a></p>
+    <h3 id="64-what-about-yanked-releases"><a aria-hidden="true" tabindex="-1" href="#64-what-about-yanked-releases"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">6.4. </span>What about yanked releases?</h3>
+    <p>A yanked release should still have an entry in the changelog, assuming the release was public for more than a few hours. Add a <a href="#23-notice">notice</a> explaining the status of the release and linking to more information if available. For example (links omitted):</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">8.5.1</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE"> - 2021-05-10</span>
+
+<span style="color: #E7EE98">_This release was never published to npm due to security issues (#123)._</span>
+</code></pre>
+    <p>The notice should <em>not</em> replace other content (i.e. the list of changes).</p>
+    <h3 id="65-should-you-ever-rewrite-a-changelog"><a aria-hidden="true" tabindex="-1" href="#65-should-you-ever-rewrite-a-changelog"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">6.5. </span>Should you ever rewrite a changelog?</h3>
+    <p>Sure. There are always good reasons to improve a changelog and not just the last release. It's a historical record and a useful reference to answer questions like "When did X change?".</p>
+    <h3 id="66-is-common-changelog-a-commit-convention"><a aria-hidden="true" tabindex="-1" href="#66-is-common-changelog-a-commit-convention"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">6.6. </span>Is Common Changelog a commit convention?</h3>
+    <p>No, if a commit convention means to encode information to be consumed by machines. The guidelines of Common Changelog can be used to write commit messages in a certain way and certainly recommend (but don't require) doing so. The key difference however is that Common Changelog targets human readers and avoids encoded communication. To say that <code>feat</code> is a feature and <code>!</code> denotes a breaking change for example.</p>
+    <h2 id="7-license"><a aria-hidden="true" tabindex="-1" href="#7-license"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">7. </span>License</h2>
+    <p><a href="https://github.com/vweevers/common-changelog/blob/main/LICENSE">MIT</a></p>
+  </body>
+</html>

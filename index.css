@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+body {
+  background-color: #1b1e25;
+  color: #e6e6e6;
+  font-family: 'Nunito Sans', sans-serif;
+  max-width: 786px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.38;
+}
+
+@media screen and (max-width: 826px) {
+  body {
+    max-width: none;
+    margin: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* Opening paragraphs */
+  body > p:nth-of-type(1), body > p:nth-of-type(2) {
+    font-size: 24px;
+  }
+}
+
+h1 img[alt=logo] {
+  width: 48%;
+}
+
+h1, h2, h3, h4 {
+  border-bottom: 3px solid #f27e3f;
+  margin-bottom: 30px;
+  padding-bottom: 5px;
+}
+
+h1, h2 {
+  color: #fff;
+}
+
+h3, h4 {
+  border-color: #333b4e;
+}
+
+.header-nr {
+  display: inline-block;
+  min-width: 40px;
+}
+
+/* Show heading link on hover */
+h1[id] .icon-link,
+h2[id] .icon-link,
+h3[id] .icon-link,
+h4[id] .icon-link {
+  width: 15px;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+h2[id] a, h3[id] a, h4[id] a {
+  float: left;
+  line-height: 1;
+  margin-left: -20px;
+  padding-right: 5px;
+  text-decoration: none;
+}
+
+h2[id]:hover .icon-link,
+h3[id]:hover .icon-link,
+h4[id]:hover .icon-link {
+  visibility: visible;
+}
+
+/* Remove bullet points from already-numbered TOC */
+h2[id="table-of-contents"] ~ ul:first-of-type, h2[id="table-of-contents"] ~ ul ul {
+  list-style: none;
+}
+
+h2[id="table-of-contents"] ~ ul:first-of-type {
+  padding: 0;
+}
+
+a {
+  color: #67c2fb;
+}
+
+/* Code blocks */
+pre {
+  border-radius: 5px;
+  padding: 15px;
+  white-space: pre-wrap;
+  font-size: 15px;
+}
+
+pre > code, p code {
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+p > code {
+  background-color: #2d3341;
+  padding: 0 3px;
+}
+
+blockquote {
+  border-left: 5px solid #535c71;
+  margin: 0;
+  padding: 0 0 0 15px;
+  color: #8e9faf;
+}
+
+/* Hint that details are clickable */
+details > summary {
+  cursor: pointer;
+}
