@@ -88,7 +88,7 @@ Subsequent Markdown content must be zero or more releases, also referred to as c
 
 A release must start with second-level Markdown heading, containing a semver-valid version (without "v" prefix) and a date in the form of `YYYY-MM-DD` ([ISO 8601](http://www.iso.org/iso/home/standards/iso8601.htm)).
 
-```
+```md
 ## <version> - <date>
 ```
 
@@ -164,7 +164,7 @@ Use notices wisely, as they will be the first thing a reader sees at the expense
 
 A change group must start with a third-level, text-only Markdown heading containing a category:
 
-```
+```md
 ### <category>
 ```
 
@@ -379,13 +379,13 @@ Removes the `unsafe` option.
 
 The change should be (links omitted for brevity):
 
-```
+```md
 - **Breaking:** bump `yaml-parser` from 4.x to 5.x (`15d5a9e`)
 ```
 
 The only exception to this rule is if the commit lacks a description. Then one could write:
 
-```
+```md
 - **Breaking:** bump `yaml-parser` from 4.x to 5.x (`15d5a9e`). Removes the `unsafe` option.
 ```
 
@@ -645,7 +645,7 @@ Instead of a special notation for yanked releases, Common Changelog uses [notice
 
 Yes! To promote the use of Common Changelog, the following Markdown can be placed in the project's readme:
 
-```
+```md
 [![Common Changelog](https://img.shields.io/badge/common_changelog-informational?logo=markdown)](https://github.com/vweevers/common-changelog)
 ```
 
@@ -655,7 +655,7 @@ Yes! To promote the use of Common Changelog, the following Markdown can be place
 
 A yanked release should still have an entry in the changelog, assuming the release was public for more than a few hours. Add a [notice](#23-notice) explaining the status of the release and linking to more information if available. For example (links omitted):
 
-```
+```md
 ## [8.5.1] - 2021-05-10
 
 _This release was never published to npm due to security issues (#123)._
