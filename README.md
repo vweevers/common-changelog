@@ -1,10 +1,12 @@
-# [![logo](./logo.svg)](https://github.com/vweevers/common-changelog)
+# [![logo](./logo.svg)](https://common-changelog.org)
 
 **Write changelogs for humans.**
 
 Common Changelog is a style guide for changelogs, adapted from and a stricter subset of [Keep a Changelog](https://keepachangelog.com/). It embraces the guiding principle of [Keep a Changelog](https://keepachangelog.com/) that changelogs must be written by humans and for humans, while recognizing that a clean changelog starts with a clean git history. Let them strenghten each other.
 
-![draft](https://img.shields.io/badge/status-draft-orange)
+[![draft](https://img.shields.io/badge/status-draft-orange)](https://github.com/vweevers/common-changelog)
+[![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
+[![License](https://img.shields.io/badge/license-MIT-informational)](LICENSE)
 
 🚀 _Too long didn't read? Here's an [example](https://github.com/Level/level/blob/master/CHANGELOG.md)._
 
@@ -47,6 +49,7 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
   - [6.4. What about yanked releases?](#64-what-about-yanked-releases)
   - [6.5. Should you ever rewrite a changelog?](#65-should-you-ever-rewrite-a-changelog)
   - [6.6. Is Common Changelog a commit convention?](#66-is-common-changelog-a-commit-convention)
+ - [7. License](#7-license)
 
 </details>
 
@@ -646,10 +649,10 @@ Instead of a special notation for yanked releases, Common Changelog uses [notice
 Yes! To promote the use of Common Changelog, the following Markdown can be placed in the project's readme:
 
 ```md
-[![Common Changelog](https://img.shields.io/badge/common_changelog-informational?logo=markdown)](https://github.com/vweevers/common-changelog)
+[![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 ```
 
-[![Common Changelog](https://img.shields.io/badge/common_changelog-informational?logo=markdown)](https://github.com/vweevers/common-changelog)
+[![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 
 ### 6.4. What about yanked releases?
 
@@ -670,3 +673,7 @@ Sure. There are always good reasons to improve a changelog and not just the last
 ### 6.6. Is Common Changelog a commit convention?
 
 No, if a commit convention means to encode information to be consumed by machines. The guidelines of Common Changelog can be used to write commit messages in a certain way and certainly recommend (but don't require) doing so. The key difference however is that Common Changelog targets human readers and avoids encoded communication. To say that `feat` is a feature and `!` denotes a breaking change for example.
+
+## 7. License
+
+[MIT](LICENSE)

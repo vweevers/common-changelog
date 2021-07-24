@@ -1,0 +1,30 @@
+{
+  "name": "common-changelog.org",
+  "private": true,
+  "version": "0.0.0",
+  "description": "common-changelog.org website",
+  "license": "MIT",
+  "author": "Vincent Weevers",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "rehype-accessible-emojis": "^0.3.2",
+    "rehype-autolink-headings": "^5.1.0",
+    "rehype-document": "^5.1.0",
+    "rehype-format": "^3.1.0",
+    "rehype-raw": "^5.1.0",
+    "rehype-shiki": "github:vweevers/rehype-shiki",
+    "rehype-slug": "^4.0.1",
+    "rehype-stringify": "^8.0.0",
+    "rehype-urls": "^1.1.1",
+    "remark-github": "^10.1.0",
+    "remark-parse": "^9.0.0",
+    "remark-rehype": "^8.1.0",
+    "unified": "^10.0.1",
+    "vfile": "^5.0.2"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}
