@@ -6,7 +6,7 @@ Common Changelog is a style guide for changelogs, adapted from and a stricter su
 
 ![draft](https://img.shields.io/badge/status-draft-orange)
 
-:rocket: _Too long didn't read? Here's an [example](https://github.com/Level/level/blob/master/CHANGELOG.md)._
+🚀 _Too long didn't read? Here's an [example](https://github.com/Level/level/blob/master/CHANGELOG.md)._
 
 ## Table of Contents
 
@@ -189,7 +189,7 @@ The list should be sorted: breaking changes first, then by other importance, the
 
 Write a change using the [imperative mood](https://en.wikipedia.org/wiki/Imperative_mood). It must start with a present-tense verb, for example (but not limited to) `Add`, `Refactor`, `Bump`, `Document`, `Fix`, `Deprecate`.
 
-> :bulb: It's highly recommended that git commits follow the same convention. A changelog draft can then be generated from git history without having to rephrase commit messages. Using the imperative mood tells someone what applying a commit will do. Similarly, in a changelog it tells someone what upgrading will do. It communicates an _intent_ of change. Most importantly though, the choice of imperative mood is meant to increase consistency and avoid bike shedding.
+> 💡 It's highly recommended that git commits follow the same convention. A changelog draft can then be generated from git history without having to rephrase commit messages. Using the imperative mood tells someone what applying a commit will do. Similarly, in a changelog it tells someone what upgrading will do. It communicates an _intent_ of change. Most importantly though, the choice of imperative mood is meant to increase consistency and avoid bike shedding.
 
 Each change must be self-describing, as if no category heading exists. Instead of:
 
@@ -285,7 +285,7 @@ For projects that contain _subsystems_ (git submodules or other units of code) a
 - **UI**: tune button colors for accessibility
 ```
 
-> :hand: The use of subsystems should generally be avoided as it weakens semver signaling.
+> ✋ The use of subsystems should generally be avoided as it weakens semver signaling.
 
 ### 2.5. Markdown formatting
 
@@ -295,7 +295,7 @@ Common Changelog has no opinions on Markdown formatting. The Markdown examples i
 
 ### 3.1. Generate a draft
 
-> :construction: I personally use [`hallmark bump`](https://github.com/vweevers/hallmark) to generate the initial content of a new changelog entry. However, it has not yet been adapted to follow Common Changelog, contains out-of-scope features, and has quirks when merge commits are used. That said, I do consider it an essential tool in my workflow and have every intention to bring it up to speed (or possibly fork it to handle changelogs separately).
+> 🚧 I personally use [`hallmark bump`](https://github.com/vweevers/hallmark) to generate the initial content of a new changelog entry. However, it has not yet been adapted to follow Common Changelog, contains out-of-scope features, and has quirks when merge commits are used. That said, I do consider it an essential tool in my workflow and have every intention to bring it up to speed (or possibly fork it to handle changelogs separately).
 
 ### 3.2. Remove noise
 
