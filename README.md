@@ -66,7 +66,7 @@ The consumers of software are human beings who care about what's in the software
 - Changelogs are for humans.
 - Communicate the impact of changes.
 - Sort content by importance.
-- Skip content that isn't.
+- Skip content that isn't important.
 - Link each change to further information.
 
 ### 1.3. Prerequisites
