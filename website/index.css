@@ -46,6 +46,7 @@ h3, h4 {
 .header-nr {
   display: inline-block;
   min-width: 40px;
+  white-space: pre;
 }
 
 /* Show heading link on hover */
