@@ -298,7 +298,7 @@ Common Changelog has no opinions on Markdown formatting. The Markdown examples i
 
 ### 3.1. Generate a draft
 
-> 🚧 I personally use [`hallmark bump`](https://github.com/vweevers/hallmark) to generate the initial content of a new changelog entry. However, it has not yet been adapted to follow Common Changelog, contains out-of-scope features, and has quirks when merge commits are used. That said, I do consider it an essential tool in my workflow and have every intention to bring it up to speed (or possibly fork it to handle changelogs separately).
+> 🚧 I personally use [`hallmark cc add`](https://github.com/vweevers/hallmark#usage) to generate the initial content of a new changelog entry. However, it comes with opinions about Markdown formatting that are out of scope for Common Changelog. That said, I do consider it an essential tool in my workflow and intend to make it less opinionated, time permitting.
 
 ### 3.2. Remove noise
 
