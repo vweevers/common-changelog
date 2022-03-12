@@ -2,6 +2,7 @@
 
 import { unified } from 'unified'
 import markdown from 'remark-parse'
+import remarkGfm from 'remark-gfm'
 import remark2rehype from 'remark-rehype'
 import doc from 'rehype-document'
 import format from 'rehype-format'
@@ -34,6 +35,7 @@ async function main () {
 function buildProcessor (theme) {
   return unified()
     .use(markdown)
+    .use(remarkGfm)
     .use(github, { repository: 'vweevers/common-changelog' })
     .use(remark2rehype, { allowDangerousHtml: true })
     .use(raw)
