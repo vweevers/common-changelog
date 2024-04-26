@@ -79,7 +79,7 @@ The consumers of software are human beings who care about what's in the software
 
 ### 2.1. File format
 
-Filename must be `CHANGELOG.md`. File content must be Markdown and start with a first-level heading:
+Filename must be `CHANGELOG.md`. File content must be [Markdown](https://daringfireball.net/projects/markdown/) and start with a first-level heading:
 
 ```md
 # Changelog
@@ -89,15 +89,19 @@ Subsequent Markdown content must be zero or more releases, also referred to as c
 
 ### 2.2. Release
 
-A release must start with second-level Markdown heading, containing a semver-valid version (without "v" prefix) and a date in the form of `YYYY-MM-DD` ([ISO 8601](http://www.iso.org/iso/home/standards/iso8601.htm)).
+A release must start with second-level Markdown heading in the following format:
 
 ```md
-## <version> - <date>
+## VERSION - DATE
 ```
 
-The version should match a git tag (with optional "v" prefix) unless it's a new version, of which the changelog entry should be committed before creating a git tag.
+Where `VERSION` is a semver-valid version (without "v" prefix) matching a git tag (with optional "v" prefix). If the version is new then the changelog entry should be committed before creating the git tag. The `DATE` must be in the form of `YYYY-MM-DD` ([ISO 8601](http://www.iso.org/iso/home/standards/iso8601.htm)). For example:
 
-The version should link to further information. Use Markdown link references to keep the unrendered Markdown form of the changelog readable. If the project is hosted on GitHub, link the version to a [GitHub release](https://help.github.com/articles/creating-releases/) that should contain the same content as the changelog entry, alongside useful GitHub features like assets and the compare view.
+```
+## 1.0.1 - 2019-08-24
+```
+
+The version should link to further information. If the project is hosted on GitHub, link the version to a [GitHub release](https://help.github.com/articles/creating-releases/) that should contain the same content as the changelog entry, alongside useful GitHub features like assets and the compare view. Preferably use [reference-style links](https://daringfireball.net/projects/markdown/syntax#link) to keep the unrendered Markdown form of the changelog readable.
 
 <details>
 <summary>Example</summary>
