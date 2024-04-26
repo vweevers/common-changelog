@@ -106,8 +106,6 @@ The version should link to further information. If the project is hosted on GitH
 <details>
 <summary>Example</summary>
 
-Valid:
-
 ```md
 ## [1.0.1] - 2019-08-24
 
@@ -121,15 +119,6 @@ _Initial release._
 
 [1.0.1]: https://github.com/owner/name/releases/tag/v1.0.1
 [1.0.0]: https://github.com/owner/name/releases/tag/v1.0.0
-```
-
-Invalid:
-
-```md
-## [1.0.1](https://github.com/owner/name/releases/tag/v1.0.1)
-## [1.0.0](https://github.com/owner/name/releases/tag/v1.0.0)
-
-_Initial release._
 ```
 
 </details>
