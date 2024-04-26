@@ -97,19 +97,20 @@
     </ul>
     <h2 id="2-format"><a aria-hidden="true" tabindex="-1" href="#2-format"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2. </span>Format</h2>
     <h3 id="21-file-format"><a aria-hidden="true" tabindex="-1" href="#21-file-format"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.1. </span>File format</h3>
-    <p>Filename must be <code>CHANGELOG.md</code>. File content must be Markdown and start with a first-level heading:</p>
+    <p>Filename must be <code>CHANGELOG.md</code>. File content must be <a href="https://daringfireball.net/projects/markdown/">Markdown</a> and start with a first-level heading:</p>
     <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE"># Changelog</span>
 </code></pre>
     <p>Subsequent Markdown content must be zero or more releases, also referred to as changelog entries. Releases must be sorted latest-first according to <a href="https://semver.org/">Semantic Versioning</a> rules, even if a release with a smaller version was published at a later time. This means that the semantically latest (and hence most important and frequently sought) release is at the top of the changelog. There must be an entry for every new stable release.</p>
     <h3 id="22-release"><a aria-hidden="true" tabindex="-1" href="#22-release"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.2. </span>Release</h3>
-    <p>A release must start with second-level Markdown heading, containing a semver-valid version (without "v" prefix) and a date in the form of <code>YYYY-MM-DD</code> (<a href="http://www.iso.org/iso/home/standards/iso8601.htm">ISO 8601</a>).</p>
-    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## &#x3C;version> - &#x3C;date></span>
+    <p>A release must start with second-level Markdown heading in the following format:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## VERSION - DATE</span>
 </code></pre>
-    <p>The version should match a git tag (with optional "v" prefix) unless it's a new version, of which the changelog entry should be committed before creating a git tag.</p>
-    <p>The version should link to further information. Use Markdown link references to keep the unrendered Markdown form of the changelog readable. If the project is hosted on GitHub, link the version to a <a href="https://help.github.com/articles/creating-releases/">GitHub release</a> that should contain the same content as the changelog entry, alongside useful GitHub features like assets and the compare view.</p>
+    <p>Where <code>VERSION</code> is a semver-valid version (without "v" prefix) matching a git tag (with optional "v" prefix). If the version is new then the changelog entry should be committed before creating the git tag. The <code>DATE</code> must be in the form of <code>YYYY-MM-DD</code> (<a href="http://www.iso.org/iso/home/standards/iso8601.htm">ISO 8601</a>). For example:</p>
+    <pre style="background: #282A36"><code style="color: #f6f6f4">&#x3C;h2>&#x3C;span class="header-nr">1.0.1 &#x3C;/span>- 2019-08-24&#x3C;/h2>
+</code></pre>
+    <p>The version should link to further information. If the project is hosted on GitHub, link the version to a <a href="https://help.github.com/articles/creating-releases/">GitHub release</a> that should contain the same content as the changelog entry, alongside useful GitHub features like assets and the compare view. Preferably use <a href="https://daringfireball.net/projects/markdown/syntax#link">reference-style links</a> to keep the unrendered Markdown form of the changelog readable.</p>
     <details>
       <summary>Example</summary>
-      <p>Valid:</p>
       <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">1.0.1</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE"> - 2019-08-24</span>
 
 <span style="color: #BF9EEE">### Fixed</span>
@@ -122,12 +123,6 @@
 
 <span style="color: #F6F6F4">[</span><span style="color: #BF9EEE">1.0.1</span><span style="color: #F6F6F4">]</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #97E1F1">https://github.com/owner/name/releases/tag/v1.0.1</span>
 <span style="color: #F6F6F4">[</span><span style="color: #BF9EEE">1.0.0</span><span style="color: #F6F6F4">]</span><span style="color: #F286C4">:</span><span style="color: #F6F6F4"> </span><span style="color: #97E1F1">https://github.com/owner/name/releases/tag/v1.0.0</span>
-</code></pre>
-      <p>Invalid:</p>
-      <pre style="background: #282A36"><code class="language-md"><span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">1.0.1</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE">(</span><span style="color: #97E1F1">https://github.com/owner/name/releases/tag/v1.0.1</span><span style="color: #BF9EEE">)</span>
-<span style="color: #BF9EEE">## </span><span style="color: #BF9EEE">[</span><span style="color: #F286C4">1.0.0</span><span style="color: #BF9EEE">]</span><span style="color: #BF9EEE">(</span><span style="color: #97E1F1">https://github.com/owner/name/releases/tag/v1.0.0</span><span style="color: #BF9EEE">)</span>
-
-<span style="color: #E7EE98">_Initial release._</span>
 </code></pre>
     </details>
     <p>After the heading, a release must have Markdown content that is either:</p>
