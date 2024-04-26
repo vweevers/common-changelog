@@ -97,7 +97,7 @@ A release must start with second-level Markdown heading in the following format:
 
 Where `VERSION` is a semver-valid version (without "v" prefix) matching a git tag (with optional "v" prefix). If the version is new then the changelog entry should be committed before creating the git tag. The `DATE` must be in the form of `YYYY-MM-DD` ([ISO 8601](http://www.iso.org/iso/home/standards/iso8601.htm)). For example:
 
-```
+```md
 ## 1.0.1 - 2019-08-24
 ```
 
