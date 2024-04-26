@@ -76,6 +76,9 @@ function cleanReadme (markdown) {
 
   // Add html to numbered headers
   markdown = markdown.replace(/^(#+) ([\d.]+) (.+)$/gm, (match, level, nr, text) => {
+    // Workaround to skip one of the markdown examples (#15)
+    if (match === '## 1.0.1 - 2019-08-24') return match
+
     const h = `h${level.length}`
     return `<${h}><span class="header-nr">${nr} </span>${text}</${h}>`
   })
