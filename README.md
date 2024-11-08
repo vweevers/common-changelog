@@ -249,13 +249,25 @@ The latter form should only be used to reference issues in external repositories
 
 #### 2.4.3. Authors
 
-Author names must be written after references, wrapped in parentheses and separated by commas. If the project only has one contributor, author names can be omitted. For changes authored by bots, the author listed in the changelog should be the person that merged the relevant Pull Request(s).
-
-Example:
+Author names must be written after references, wrapped in parentheses and separated by commas. Example:
 
 ```md
 - Fix infinite loop ([#194](https://github.com/owner/name/issues/194)) (Alice Meerkat)
 ```
+
+With multiple authors it would be (links omitted for brevity):
+
+```md
+- Fix infinite loop (#194) (Alice Meerkat, Milly Moose)
+```
+
+Alternatively, separate the references and authors by a semicolon, which can make lists of lists because a semicolon is a stronger punctuation mark than a comma. For example:
+
+```md
+- Fix infinite loop (#194, #195; Alice Meerkat, Milly Moose)
+```
+
+If the project only has one contributor, author names can be omitted. For changes authored by bots, the author listed in the changelog should be the person that merged the relevant Pull Request(s).
 
 There are no rules for whether to use the author's full name, username, or other. Common Changelog does recommend using the author's own preferred name, for which git is the most readily available source of truth.
 
