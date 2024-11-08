@@ -205,10 +205,16 @@
     <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">(</span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">JIRA-837</span><span style="color: #F6F6F4">]</span><span style="color: #F6F6F4">(</span><span style="color: #97E1F1">https://example.atlassian.net/browse/JIRA-837</span><span style="color: #F6F6F4">))</span>
 </code></pre>
     <h4 id="243-authors"><a aria-hidden="true" tabindex="-1" href="#243-authors"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.4.3. </span>Authors</h4>
-    <p>Author names must be written after references, wrapped in parentheses and separated by commas. If the project only has one contributor, author names can be omitted. For changes authored by bots, the author listed in the changelog should be the person that merged the relevant Pull Request(s).</p>
-    <p>Example:</p>
+    <p>Author names must be written after references, wrapped in parentheses and separated by commas. Example:</p>
     <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Fix infinite loop (</span><span style="color: #F6F6F4">[</span><span style="color: #F286C4">#194</span><span style="color: #F6F6F4">]</span><span style="color: #F6F6F4">(</span><span style="color: #97E1F1">https://github.com/owner/name/issues/194</span><span style="color: #F6F6F4">)) (Alice Meerkat)</span>
 </code></pre>
+    <p>With multiple authors it would be (links omitted for brevity):</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Fix infinite loop (#194) (Alice Meerkat, Milly Moose)</span>
+</code></pre>
+    <p>Alternatively, separate the references and authors by a semicolon, which can make lists of lists because a semicolon is a stronger punctuation mark than a comma. For example:</p>
+    <pre style="background: #282A36"><code class="language-md"><span style="color: #F6F6F4">- Fix infinite loop (#194, #195; Alice Meerkat, Milly Moose)</span>
+</code></pre>
+    <p>If the project only has one contributor, author names can be omitted. For changes authored by bots, the author listed in the changelog should be the person that merged the relevant Pull Request(s).</p>
     <p>There are no rules for whether to use the author's full name, username, or other. Common Changelog does recommend using the author's own preferred name, for which git is the most readily available source of truth.</p>
     <h4 id="244-prefixes"><a aria-hidden="true" tabindex="-1" href="#244-prefixes"><img src="./link.svg" class="icon icon-link" aria-hidden></a><span class="header-nr">2.4.4. </span>Prefixes</h4>
     <p>Breaking changes must be prefixed in bold with <code>**Breaking:** </code>and should be listed before other changes (per category). For example (references omitted for brevity):</p>
