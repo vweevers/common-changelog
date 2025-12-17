@@ -4,7 +4,6 @@
 
 Common Changelog is a style guide for changelogs, adapted from and a stricter subset of [Keep a Changelog](https://keepachangelog.com/). It embraces the guiding principle of [Keep a Changelog](https://keepachangelog.com/) that changelogs must be written by humans and for humans, while recognizing that a clean changelog starts with a clean git history. Let them strengthen each other.
 
-[![draft](https://img.shields.io/badge/status-draft-orange)](https://github.com/vweevers/common-changelog)
 [![Common Changelog](https://common-changelog.org/badge.svg)](https://common-changelog.org)
 [![License](https://img.shields.io/badge/license-MIT-informational)](LICENSE)
 
