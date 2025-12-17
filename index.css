@@ -103,6 +103,13 @@ p > code {
   padding: 0 3px;
 }
 
+code:not(pre > code) {
+  margin: 0px 2px;
+  padding: 0px 5px;
+  border: 1px solid rgb(187, 187, 187);
+  border-radius: 5px;
+}
+
 blockquote {
   border-left: 5px solid #535c71;
   margin: 0;
